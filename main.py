@@ -22,6 +22,22 @@ def extract_coef( time, distance ):
     return popt, (pcov, (_range, values)) , MSR 
 
 
+def extract_coef( time, distance ):
+
+    def f(x, a, b, c, a2, c2, d):
+        return ( b* np.sin(a*x + c)/(a*x + c) *  np.cos(a2*x + c2)/(a2*x + c2))**2   
+    popt, pcov = curve_fit(f, time, distance)
+    _range = np.linspace( np.min(time) , np.max(time), 1000 )
+
+    values = f(_range, *popt)
+    values2 = f(time, *popt)
+    MSR = np.sum((values2 - distance)**2)/ len(values)
+    print(MSR)
+    return popt, (pcov, (_range, values)) , MSR 
+
+    
+
+
 def merge(f, g, x0, x1):
     ret = np.zeros( len(f) )
     ret[:x0] = f[:x0]
@@ -35,6 +51,7 @@ def merge(f, g, x0, x1):
 #         "single0.02B.txt",  "single0.02no2.txt",     "single0.08a.txt" ]
 
 _files = [
+    "single0.02exp2.txt",
     "single0.04Good2.txt",
     "single0.04Good.txt",
     "single0.08Good2.txt",
@@ -48,6 +65,8 @@ def genLegend( _file ):
 
 if __name__ == "__main__":
 
+
+    G = []
 
     legends = []
     for _file in _files:
@@ -72,10 +91,14 @@ if __name__ == "__main__":
             print(__)
             plt.plot(X,Y)
             legends.append( genLegend( _file ) + " fit"  )
+            G.append( __[0])
         except:
-            print("error {0}".format(e))
+            print("error")
             pass
         plt.legend( legends )
         plt.savefig( _file +".svg" )
         legends = []
         plt.clf()
+
+    plt.plot( list(range(len(G))) ,G)
+    plt.show()
