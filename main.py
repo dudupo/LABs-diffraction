@@ -16,7 +16,9 @@ def extract_coef( time, distance ):
     _range = np.linspace( np.min(time) , np.max(time), 1000 )
 
     values = f(_range, *popt)
-    MSR = (values - distance)**2/ len(values)
+    values2 = f(time, *popt)
+    MSR = np.sum((values2 - distance)**2)/ len(values)
+    print(MSR)
     return popt, (pcov, (_range, values)) , MSR 
 
 
@@ -67,11 +69,11 @@ if __name__ == "__main__":
             pass
 
             __ , (_, ( X, Y )), MSR = extract_coef(A[-1][ind], -A[-2][ind])
+            print(__)
             plt.plot(X,Y)
-            print(_)
             legends.append( genLegend( _file ) + " fit"  )
         except:
-            print("error {0}".format(_file))
+            print("error {0}".format(e))
             pass
         plt.legend( legends )
         plt.savefig( _file +".svg" )
