@@ -1,11 +1,3 @@
-Number of measurement points: 6571
-Sample Rate (Hz): 100
-Low limit Ch0 (V): -10
-Upper limit Ch0 (V): 10
-Low limit Ch1 (V): -10
-Upper limit Ch1 (V): 10
-
-Index	Time[s]	Ch0[V]	Ch1[V]
 0	0	-0.0120596683118492	1.13832774269395
 1	0.01	-0.0120596683118492	1.13832774269395
 2	0.02	-0.0120596683118492	1.13832774269395
