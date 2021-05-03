@@ -9,11 +9,15 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 def extract_coef( time, distance ):
+
     def f(x, a, b, c, d):
         return ( b* np.sin(a*x + c)/(a*x + c) )**2  
     popt, pcov = curve_fit(f, time, distance)
     _range = np.linspace( np.min(time) , np.max(time), 1000 )
-    return popt, (_range, f(_range, *popt)) 
+
+    values = f(_range, *popt)
+    MSR = (values - distance)**2/ len(values)
+    return popt, (pcov, (_range, values)) , MSR 
 
 
 def merge(f, g, x0, x1):
@@ -62,7 +66,7 @@ if __name__ == "__main__":
         try:
             pass
 
-            _, ( X, Y )= extract_coef(A[-1][ind], -A[-2][ind])
+            __ , (_, ( X, Y )), MSR = extract_coef(A[-1][ind], -A[-2][ind])
             plt.plot(X,Y)
             print(_)
             legends.append( genLegend( _file ) + " fit"  )
