@@ -16,7 +16,8 @@ def extract_coef( time, distance ):
     _range = np.linspace( np.min(time) , np.max(time), 1000 )
 
     values = f(_range, *popt)
-    MSR = (values - distance)**2/ len(values)
+    # MSR = (values - distance)**2/ len(values)
+    MSR = 0
     return popt, (pcov, (_range, values)) , MSR 
 
 
@@ -33,6 +34,7 @@ def merge(f, g, x0, x1):
 #         "single0.02B.txt",  "single0.02no2.txt",     "single0.08a.txt" ]
 
 _files = [
+    "single0.02exp2.txt",
     "single0.04Good2.txt",
     "single0.04Good.txt",
     "single0.08Good2.txt",
@@ -68,7 +70,7 @@ if __name__ == "__main__":
 
             __ , (_, ( X, Y )), MSR = extract_coef(A[-1][ind], -A[-2][ind])
             plt.plot(X,Y)
-            print(_)
+            print(__)
             legends.append( genLegend( _file ) + " fit"  )
         except:
             print("error {0}".format(_file))
