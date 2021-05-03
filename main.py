@@ -22,10 +22,10 @@ def extract_coef( time, distance ):
     return popt, (pcov, (_range, values)) , MSR 
 
 
-def extract_coef( time, distance ):
+def extract_coef2( time, distance ):
 
     def f(x, a, b, c, a2, c2, d):
-        return ( b* np.sin(a*x + c)/(a*x + c) *  np.cos(a2*x + c2)/(a2*x + c2))**2   
+        return ( b* np.sin(a*x + c)/(a*x + c) *  np.cos(a2*x + c2))**2   
     popt, pcov = curve_fit(f, time, distance)
     _range = np.linspace( np.min(time) , np.max(time), 1000 )
 
@@ -60,6 +60,10 @@ _files = [
     "single0.16Good.txt",
 ]
 
+_files2 = [ 
+    "double0.5and0.8.txt"
+]
+
 def genLegend( _file ):
     return _file[_file.index("."):_file.rindex(".")]
 
@@ -68,37 +72,45 @@ if __name__ == "__main__":
 
     G = []
 
+
+
     legends = []
-    for _file in _files:
+    for i , (__files, g) in enumerate( zip([_files, _files2],  [extract_coef, extract_coef2])):
+        for _file in __files:
 
-        A = np.array( [  np.fromstring(line, sep=" ")  for line in  open( _file, "r").readlines() ])
-        A = A.transpose()
+            A = np.array( [  np.fromstring(line, sep=" ")  for line in  open( _file, "r").readlines() ])
+            A = A.transpose()
+            
+            print(A.shape)
         
-        print(A.shape)
-        
-        ind = np.abs(A[-1]) < 1 
-        A[-2] = A[-2] / np.sqrt( np.sum( A[-2]**2 ) )
-        
-        
-        plt.plot(A[-1][ind] , -A[-2][ind] )
-        # plt.plot( A[-1], -A[-2])
-        legends.append(genLegend(_file) )
-        
-        try:
-            pass
+            X, Y = A[-1], -A[-2]
+            if i == 0:
+                ind = np.abs(A[-1]) < 1 
+                X, Y = A[-1][ind], -A[-2][ind]
+            Y = Y / np.sqrt( np.sum( Y**2 ) )
+            
+            
+            plt.plot(X , Y )
+            # plt.plot( A[-1], -Y)
+            legends.append(genLegend(_file) )
+            
+            try:
+                pass
 
-            __ , (_, ( X, Y )), MSR = extract_coef(A[-1][ind], -A[-2][ind])
-            print(__)
-            plt.plot(X,Y)
-            legends.append( genLegend( _file ) + " fit"  )
-            G.append( __[0])
-        except:
-            print("error")
-            pass
-        plt.legend( legends )
-        plt.savefig( _file +".svg" )
-        legends = []
-        plt.clf()
+                __ , (_, ( X0, Y0 )), MSR = g(X, Y)
+                print(__)
+                plt.plot(X0,Y0)
+                legends.append( genLegend( _file ) + " fit"  )
+                if i == 0:
+                   G.append( __[0])
+            except:
+                print("error")
+                pass
+            plt.legend( legends )
+            # plt.show()
+            plt.savefig( _file +".svg" )
+            legends = []
+            plt.clf()
 
     plt.plot( list(range(len(G))) ,G)
     plt.show()
