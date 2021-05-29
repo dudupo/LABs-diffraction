@@ -69,7 +69,7 @@
 \math_numbering_side default
 \quotes_style english
 \dynamic_quotes 0
-\papercolumns 1
+\papercolumns 2
 \papersides 1
 \paperpagestyle default
 \tracking_changes false
@@ -89,18 +89,405 @@
 מיכאל כהן ודויד פונרובסקי 
 \end_layout
 
+\begin_layout Paragraph
+תיאור מערכת הניסוי.
+\end_layout
+
 \begin_layout Standard
-חלק ראשון, הצגה של החלק הראשון, תיאור הניסוי, הצגת הנוסחה הכללית והקירוב,
- הצגת השגיאות, גרף ראשון, שתי מדידות והתאמה לסינק, גרף שלישי, חילוץ מקדם,
- ואימות אל מול אורך הגל.
+איור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מציג שירטוט סכמתי של מערכת הניסוי.
+ בנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ ממוקם הלייזר, קרן זאת עוברת דרך נקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ שם מונח השריג, שיכל להיות סדק בודד או זוג שכאלה.
+ באות 
+\begin_inset Formula $W$
+\end_inset
+
+ נסמן את רוחב הסדק, ובמקרה של שתי סדקים נשתמש בנוסף באות 
+\begin_inset Formula $d$
+\end_inset
+
+ כדי לסמן את המרחק ביינהם.
+ 
+\begin_inset Formula $z$
+\end_inset
+
+ יציין את המרחק המינמלי )האנך( אותו עוברת קרן האור עד להגעה למישור המסך.
+ ב
+\begin_inset Formula $B$
+\end_inset
+
+ נמצא הגלאי, הנע על מסלול מעגלי שבקרוב מתלכד עם המישור, הזווית הנפרשת ממנו
+ אל האנך, היא דרגת החופש שלנו במערכת אותה נסמן ב 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ בחרנו למדוד רק עבור ערכי 
+\begin_inset Formula $|\theta|<\frac{2\pi}{24}$
+\end_inset
+
+ )
+\begin_inset Formula $\pm15^{\circ}$
+\end_inset
+
+( שם מתקיים כי מסדר ראשון 
+\begin_inset Formula 
+\[
+\tan\left(\theta\right)\sim\theta+\mathcal{O}\left(\frac{\theta^{3}}{3}\right)\le\theta+\frac{1}{3}\left(\frac{2\pi}{24}\right)^{3}\le\theta+7\cdot10^{-4}
+\]
+
+\end_inset
+
+ ולכן נוכל להצדיק קירובי זוויות קטנות 
+\begin_inset Formula $\frac{x}{z}=\tan\theta\rightarrow|x-z\theta|\le\sim\frac{1}{20}$
+\end_inset
+
+.
+ התחשבות השגיאה ב 
+\begin_inset Formula $x$
+\end_inset
+
+, תעמיס על החישובים ואינה תתרום בסדרי גדול מעבר לתרומות שגיאות אחרות.
+ לכן לא נתחשב בה, ונניח כי ערכי את ה 
+\begin_inset Formula $x$
+\end_inset
+
+ עלפני המסך אנו מודדים בקרוב טוב.
+ נסמן ב 
+\begin_inset Formula $x^{\prime}$
+\end_inset
+
+ נקודה בה הקרן יכולה להיות במישור השריג, אורך הגל מקיים 
+\begin_inset Formula 
+\[
+\frac{1}{\lambda}\cdot x^{\prime2}\le\frac{1}{\lambda}\cdot W^{2}\sim\frac{\left(\mu m\right)^{2}}{\mu m}\le\mathcal{O}\left(10^{-6}z\right)
+\]
+
+\end_inset
+
+ כלומר קירוב השדה הרחוק של פרנוהפר מוצדק במערכת.
+\end_layout
+
+\begin_layout Standard
+את הזווית ועוצמת האור אנו מודדים על ידי חשיינים שאנו מניחים כי הם מבצעים
+ רק פעולות לניאריות על הקלט, כלומר מוסיפים רק כפולות בקבוע.
  
 \end_layout
 
 \begin_layout Standard
-הצגת התאמה לנוסחה המדוייקת יותר, ולהראות את נכונות הקירוב.
- חלק שני, הצגת הפתרון עבור שתי סדקים.
- אימות עוד פעם אל מול אורך הגל.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diffre_1.jpg
+	display false
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+אימות
+\family roman
+\series bold
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
  
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+התאוריה אל מול אורך הגל.
+\end_layout
+
+\begin_layout Standard
+בניסוי השתמשנו בלייזר אדום בעל אורך גל 
+\begin_inset Formula $\lambda\sim0.6_{\left[μm\right]}$
+\end_inset
+
+.
+ אורך זה משותף לכל הניסויים, ללא תלות ביחס לרוחב הסדק או כמות הסדקים.
+ בנוסף בניגוד לערכים משתופים אחרים, למשל מרחק הלייזר מהגלאי, אורך הגל רובסטי
+ במיוחד לשגיאות כיול.
+ ביחס ליכולת המדידה שלנו גודל זה הוא אוניברסלי ולכן אם הניסויים שלנו תואמים
+ את התאוריה, נצפה שחישוב יניב אורך גל זהה.
+\end_layout
+
+\begin_layout Standard
+כזכור, לפי קירוב פרנהופר העוצמה המתקבלת היא 
+\begin_inset Formula $V\left(\theta\right)\sim V\left(x_{\theta}\right)\propto sinc^{2}\left(\frac{\pi wx}{\lambda z}\right)$
+\end_inset
+
+ עבור סדק יחיד.
+ סכמת החישוב מתבצעת באופן הבא,
+\end_layout
+
+\begin_layout Enumerate
+תחילה אנו מוצאים את תדירות הסינק 
+\begin_inset Formula $\alpha_{W}=\arg\min_{\alpha}RMS\left(V\left(x\right),Amp\cdot sinc^{2}\left(\alpha x\right)\right)$
+\end_inset
+
+ עבור כל ניסוי.
+\end_layout
+
+\begin_layout Enumerate
+לאחר מכן, אנו מחלצים את שיפוע ההתאמה הלינארית לגדלים המתקבלים מ 
+\begin_inset Formula $\frac{1}{\alpha_{W}\cdot W}$
+\end_inset
+
+ כלומר 
+\begin_inset Formula 
+\[
+\lambda=\arg\min_{\lambda,\phi}RMS\left(\frac{1}{\alpha_{W}}\left(\frac{1}{W}\right),\lambda\cdot\left(\frac{1}{W}\right)+\phi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+אפקטיבית, השגיאה ברוחב הסדק זניחה ) סדר גודל של פחות מ-
+\begin_inset Formula $\mu m$
+\end_inset
+
+ אין לנו יכולת להבחין בה (, ולכן ניתחשב רק בשיגאת של מדידת המרחק 
+\begin_inset Formula $\Delta z$
+\end_inset
+
+, ונסמן ב 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ את סטיין התקן אותה מחזירה התאמת ה 
+\begin_inset Formula $RMS$
+\end_inset
+
+ של ספריית ה
+\begin_inset Formula $scipy$
+\end_inset
+
+.
+ מכאן ש 
+\begin_inset Formula 
+\begin{align*}
+ & \alpha\left(W\right)=\frac{\pi W}{\lambda\left(z\pm\Delta z\right)}\pm\sigma\Rightarrow\lambda=\frac{\pi W}{\left(\alpha\left(W\right)\pm\sigma\right)\left(z\pm\Delta z\right)}\\
+ & \ \ \lambda\sim\frac{\pi W}{\alpha\left(W\right)z}\left[1\pm\left(\frac{\sigma}{\alpha\left(W\right)}+\frac{\Delta z}{z}\right)+\mathcal{O}\left(\Delta^{2}\right)\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+באופן זהה לחלוטין נאמת את ניסוי שני הסדקים, רק ששם התאוריה חוזה קשר של 
+\begin_inset Formula $V\left(x_{\theta}\right)\propto sinc^{2}\left(\frac{\pi wx}{\lambda z}\right)\cos^{2}\left(\frac{\pi}{\lambda z}\frac{d+W}{2}x\right)$
+\end_inset
+
+ כאשר הקשר מתקבל לאור הזהות 
+\begin_inset Formula 
+\[
+\mathcal{F}\left[\frac{f\left(t+\tau\right)+f\left(t-\tau\right)}{2}\right]=\mathcal{F}\left[f\right]\cos\left(\tau x\right)
+\]
+
+\end_inset
+
+ במקרה שלנו, המרחק בין הסדקים הוא 
+\begin_inset Formula $d$
+\end_inset
+
+, מרכזם נמצא ב 
+\begin_inset Formula $\frac{d+W}{2}$
+\end_inset
+
+, ולכן עוצמת האהרה ברגע המעבר בסדק שקולה לעוצמת שתי מקרות אור במרחק 
+\begin_inset Formula $\pm\frac{d+W}{2}$
+\end_inset
+
+ מהראשית.
+ הפעם נוסיף פרמטר 
+\begin_inset Formula $\beta_{W,d}$
+\end_inset
+
+ שייצג את התדירות האופטימלית של רכיב ה 
+\begin_inset Formula $\cos$
+\end_inset
+
+ כלומר 
+\begin_inset Formula 
+\[
+\alpha_{W,d},\beta_{W,d}=\arg\min RMS\left(V\left(x\right),Amp\cdot sinc^{2}\left(\alpha x\right)\cos^{2}\left(\beta x\right)\right)
+\]
+
+\end_inset
+
+נחלץ את אורך הגל לפי הפרצודרה עבור 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ ו 
+\begin_inset Formula $\beta$
+\end_inset
+
+ בנפרד, ונאמת את ערך אורך הגל בנפרד.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
+	display false
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

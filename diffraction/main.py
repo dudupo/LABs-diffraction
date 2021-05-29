@@ -1,4 +1,6 @@
 
+from typing import overload
+# from numpy.ma import indices
 
 import sys, os
 sys.path.append(os.path.realpath(".."))
@@ -8,7 +10,11 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 from lib import fit as ft
-from lib.exp import Exp, FittedObj
+from lib.exp import Exp, FittedObj, glabels, plotlabels
+
+import matplotlib
+matplotlib.rcParams['text.usetex'] = True
+
 
 def merge(f, g, x0, x1):
     ret = np.zeros( len(f) )
@@ -17,37 +23,27 @@ def merge(f, g, x0, x1):
     ret[x1:] = f[x1:]
     return ret 
 
-# _files = [
-#         "single0.02Bblack.txt",  "single0.04.txt",
-#         "single0.02no.txt",      "single0.08.txt",
-#         "single0.02B.txt",  "single0.02no2.txt",     "single0.08a.txt" ]
-
 _files = [
     "txt/single0.02exp2.txt",
     "txt/single0.04Good2.txt",
-    "txt/single0.04Good.txt",
+    # "txt/single0.04Good.txt",
     "txt/single0.08Good2.txt",
-    "txt/single0.08Good.txt",
+    # "txt/single0.08Good.txt",
     "txt/single0.16Good2.txt",
-    "txt/single0.16Good.txt",
+    # "txt/single0.16Good.txt",
 ]
 
 _files2 = [ 
-    "txt/double0.5and0.8.txt",
-    "txt/double0.5and0.4.txt",
-    "txt/double0.25and0.8.txt",
-    "txt/double0.5and0.8SYM.txt"
+    "txt/double0.5and0.08.txt",
+    "txt/double0.5and0.04.txt",
+    "txt/double0.25and0.04.txt",
+    "txt/double0.25and0.08SYM.txt",
+    "txt/double0.5and0.08SYM.txt"
 ]
 
-
-    # def plot(self, ) 
-
-# LENGTH = 0.3
-
-
 def find_wave_length(x_vals, y_vals, drop=2):
-    _fited = FittedObj(x_vals,\
-         np.pi *x_vals/ y_vals, lambda x,a,b : a*x+b, drop=drop)    
+    _fited = FittedObj(1/x_vals,\
+         np.pi *x_vals/ y_vals, lambda x,a,b : a*x, drop=drop)    
     return _fited
 
 
@@ -75,16 +71,25 @@ class SingleExp (Exp):
         y_vals = np.array([_parmas[0][0] for _parmas in self.func_parmas])
         x_vals = np.array(self.meta)
         print(x_vals, y_vals)
-        _fited = find_wave_length(x_vals, y_vals)
-        print(_fited.func_parmas[0], _fited.func_parmas[1][0] )
+        _fited = find_wave_length(x_vals, y_vals, drop=None)
         _fited.plot()
-        plt.show()
-        # plt.scatter(x_vals, y_vals, marker='o')
-        # plt.plot(_range, values)
-        # plt.show()
-        # print(MSR)
-        # print(np.pi/ (popt[0]))
-
+        glabels.send(r"single slit, $\lambda = {0}$".format(np.around( _fited.func_parmas[0][0],2)))
+        # plt.legend( )
+        print(_fited.func_parmas[0], _fited.func_parmas[1][0] )
+    
+    def fun(self, x, i):
+        def f(x, a, b, c, d):
+            return ( b* np.sin(a*x+c )/(a*x+c ) )**2
+        return f(x, *self.func_parmas[i][0])
+    def plot(self):
+        _range  = np.linspace( np.min(self.data[0][0]),\
+             np.max(self.data[0][0]), 1000 )
+        indices = abs(_range) < 0.5        
+        _range = _range[indices] 
+        for i, _ in enumerate(self.data):
+            indices = abs(self.data[i][0]) < 0.5
+            plt.scatter( self.data[i][0][indices], self.data[i][1][indices], s=0.5)
+            plt.plot( _range, self.fun(_range, i) )
 class doubleSlit(Exp):
 
     def __init__(self):
@@ -105,7 +110,7 @@ class doubleSlit(Exp):
             _str = _str[findex+3:]
             findex = _str.index('SYM') if 'SYM' in _str else _str.index('.txt') 
             y = float(_str[:findex])
-            return [x , y]
+            return [y , x]
         
         super().__init__(_files2, _filter=_filter, _metaformat=_metaformat)
 
@@ -113,21 +118,28 @@ class doubleSlit(Exp):
         super().extract_func(ft.extract_coef2)
     
     def find_wave_length(self):
-        # print( self.meta)
-        y_vals = np.array([[_parmas[0][0], _parmas[0][-1]] for _parmas in self.func_parmas]).reshape(1,-1)
-        x_vals = np.array(self.meta).reshape(1,-1)
+        y_vals = np.array([[_parmas[0][0], _parmas[0][-1]] for _parmas in self.func_parmas])
+        x_vals = np.array(self.meta)
         x_vals, y_vals  = x_vals.transpose(), y_vals.transpose()
         print(x_vals)
         print(y_vals)
-        
-        _fited = find_wave_length(x_vals[1], y_vals[0], drop=1)
-        print(_fited.func_parmas[0], _fited.func_parmas[1][0] )
-        _fited.plot()
-        plt.show()
+        for i in range(2):
+            if i == 1:            
+                _fited = find_wave_length( ( x_vals[1])/2, y_vals[i], drop=None)
+                glabels.send(r"double slit, $\lambda(d) = {0}$".format( np.around(_fited.func_parmas[0][0],2)))
 
+            else:
+                _fited = find_wave_length(x_vals[i], y_vals[i], drop=None)
+                glabels.send(r"double slit, $\lambda(W) = {0}$".format(np.around(_fited.func_parmas[0][0],2)))
+
+            _fited.plot()
+            print("res:")
+            print(_fited.func_parmas[0], _fited.func_parmas[1][0] )
 
 def genLegend( _file ):
     return _file[_file.index("."):_file.rindex(".")]
+
+
 
 if __name__ == "__main__":
 
@@ -136,6 +148,13 @@ if __name__ == "__main__":
     _singleExp.find_wave_length()
     PPP = doubleSlit()
     PPP.extract_func()
-    
     print(PPP.meta)
     PPP.find_wave_length()
+    plt.title(r' $\frac{1}{\alpha} \ - \ W \ linear \ connection $')
+    plt.xlabel(r' $ (\frac{1}{W} \ or \ d)_{[mm]} $')
+    plt.ylabel(r' $ \frac{1}{\alpha(W)}_{[\cdot]}$ ')
+    plotlabels()
+    plt.savefig("./graphs/Fig1.svg")
+    plt.clf()
+    _singleExp.plot()
+    plt.show()

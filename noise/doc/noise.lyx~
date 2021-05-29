@@ -1,0 +1,784 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass heb-article
+\use_default_options true
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "David CLM"
+\font_sans "default" "David CLM"
+\font_typewriter "default" "David CLM"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+דוח רעש 
+\end_layout
+
+\begin_layout Author
+מיכל כהן ודויד פונרובסקי 
+\end_layout
+
+\begin_layout Paragraph*
+רעש ג'ונסון.
+\end_layout
+
+\begin_layout Standard
+כידוע לפי הנוסח )הכי פשטני( זרם חשמלי הוא מעבר של מטען בין דרגות שונות של
+ פוטנציאל חשמלי, את הדינמיקה המתקבלת כאשר ההפרש הוא גס מתארת היטב התורה
+ האלקטרומגנטית.
+ אם זאת, כאשר יוצאים ממסגרת ההעולם האידאלי הפוטנציאל החשמלי של כל גוף/רכיב
+ אינו אחיד על פניו.
+ רעש ג'ונסון מתאר את העולם בגבול הזה, נרצה לחשוב על המתח 
+\begin_inset Formula $V$
+\end_inset
+
+, המאפיין תדר 
+\begin_inset Formula $\nu$
+\end_inset
+
+, הנמדד משתי נקודות שונות של נגד 
+\begin_inset Formula $R$
+\end_inset
+
+ כאל משתנה מקרי 
+\begin_inset Formula $V\left(\nu\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+כזכור מחשמל, הקשר בין ההספק למתח מתואר ע
+\begin_inset Quotes erd
+\end_inset
+
+י 
+\begin_inset Formula $P=\frac{V^{2}}{4R}$
+\end_inset
+
+ כלומר במקרה שלנו 
+\begin_inset Formula $\mapsto\left\langle P\right\rangle =\frac{\left\langle V^{2}\right\rangle }{4R}$
+\end_inset
+
+.
+ מצד שני אנו יודעים כי האנרגיה הממוצעת של הוסילטור בעל תדר עצמי 
+\begin_inset Formula $\nu$
+\end_inset
+
+ מתפלג לפי 
+\begin_inset Formula $\left\langle \varepsilon\left(\nu\right)\right\rangle =\frac{2\pi\hbar\nu}{e^{\frac{2\pi\hbar\nu}{kT}}-1}$
+\end_inset
+
+ ובטמפ' גבוהות מתקבל 
+\begin_inset Formula $\left\langle \varepsilon\left(\nu\right)\right\rangle \sim kT$
+\end_inset
+
+.
+ וממהקשר של הספק לאנרגיה 
+\begin_inset Formula $\left\langle P\left(\nu\right)\right\rangle =\left\langle \varepsilon\left(\nu\right)\right\rangle d\nu$
+\end_inset
+
+ נקבל כי 
+\begin_inset Formula 
+\[
+\left\langle V^{2}\left(\nu\right)\right\rangle =4kTRd\nu\ \ \left(eq\ 1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+בניסוי זה אנו מאמתים את נכונות התאוריה, במהצאות חישוב שני קבועים אוניברסלים,
+ הראשון הוא קבוע בולצמן והשני הוא טמפרטורת האפס המוחלט, נציין כי את שתי
+ הגדלים חישבנו ברמת דיוק משביעה רצון ביחס אל יכולת המדידה שלנו.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+אימות אל מול קבוע בולצמן.
+ 
+\end_layout
+
+\begin_layout Standard
+את קבוע בולצמן נמצא על ידי ההתאמה הלניארית של ערכי 
+\begin_inset Formula $\left\langle V^{2}\right\rangle $
+\end_inset
+
+ הנמדדים עבור ערכי 
+\begin_inset Formula $R$
+\end_inset
+
+ שונים, מאחר ובהערכה גסה, בטמפ' החדר ולנגד מסדר גודל של 
+\begin_inset Formula $\left[10M\Omega\right]$
+\end_inset
+
+ רעש ג'ונסון הוא מסדר גודל של 
+\begin_inset Formula $\sim\sqrt{10^{-23}\cdot10^{7}\cdot10^{2}}<10^{-6}\left[V\right]$
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/lyx/noise_3.jpg
+	display false
+	scale 12
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ב 
+\begin_inset Formula $A$
+\end_inset
+
+ מוצגת סכמת הניסוי, ב
+\begin_inset Formula $B$
+\end_inset
+
+ סכמת הכיול וב
+\begin_inset Formula $C$
+\end_inset
+
+ מתואר המעגל השקול לחיבור של נגד אל כבל קואקסלי.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ נזדקק למגבר על מנת להגיע לסקלה אותה מכשירי המדידה שלנו יכולים למדוד.
+ השתמשנו במגבר המחובר לספק של 
+\begin_inset Formula $15\left[V\right]$
+\end_inset
+
+ ונסמן ב 
+\begin_inset Formula $g\left(\nu\right)$
+\end_inset
+
+ את יחס ההגברה )עבור 
+\begin_inset Formula $\left\langle V^{2}\right\rangle $
+\end_inset
+
+( של המגבר עבור תדר 
+\begin_inset Formula $\nu$
+\end_inset
+
+.
+ במעגל טרויאלי היינו מצפים לקבל כי 
+\begin_inset Formula $V^{2}=4kTRG$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $G=\int_{-\infty}^{\infty}g^{2}\left(\nu\right)$
+\end_inset
+
+.
+ אם זאת, מאחר ואנו משתמשים כבל קואקסלי כדי להוריד השפעות של שדות מגנטים,
+ נקבל כי חיבור הנגד בכבל הקואקסלי שקול לחיבור של קבל במקביל לנגד כמתואר
+ באיור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\numeric off
+.
+ פונקציית התמסורת של מעגל זה היא 
+\begin_inset Formula $g^{\prime}\left(\nu\right)=\frac{1}{1+i2\pi\nu RC}$
+\end_inset
+
+ ולכן שירשור המעגל יניב כי 
+\begin_inset Formula 
+\[
+\frac{\left\langle V_{amplified}^{2}\left(\nu\right)\right\rangle }{\left\langle V_{resistor}^{2}\left(\nu\right)\right\rangle }=g\circ g^{\prime}=\frac{g^{2}\left(\nu\right)}{1+\left(2\pi\nu CR\right)^{2}}d\nu\ \ \left(eq\ 2\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+שלבי הניסוי: 
+\end_layout
+
+\begin_layout Enumerate
+מציאת מתח הרוויה של המגבר ורוחב הסרט בו הקרוב 
+\begin_inset Formula $\varepsilon\sim kT$
+\end_inset
+
+ עדיין תקף, כאשר עבור תדירויות מעבר לרוחב זה האנרגיה שואפת לאפס )הרי ש 
+\begin_inset Formula $\lim_{\nu\rightarrow\infty}\frac{2\pi\hbar\nu}{e^{\frac{2\pi\hbar\nu}{kT}}-1}=0$
+\end_inset
+
+ ( ומשם גם ההספק.
+ אנו משתמשים במגבר 
+\series bold
+להשלים
+\series default
+ , 
+\end_layout
+
+\begin_layout Enumerate
+מציאת 
+\begin_inset Formula $g\left(\nu\right)$
+\end_inset
+
+ עבור מספר רב של מודים בתחום רוחב הסרט, זאת נעשה על ידי הזנת המגבר בסיגנל
+ סניוסאלי, מסיבות טכניות איננו יכולים ליצור מתח בסדר של 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ ולכן נשתמש במנחת )מופיע באיור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\numeric off
+, 
+\begin_inset Formula $B$
+\end_inset
+
+ כ 
+\begin_inset Formula $dumper$
+\end_inset
+
+ ( המנחית פי 
+\begin_inset Formula $10^{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+חישוב עבור מספר של נגדים את הערך 
+\begin_inset Formula $G$
+\end_inset
+
+ ומדידה עבור כל אחד מהם את הערך 
+\begin_inset Formula $\left\langle V^{2}\right\rangle $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+חילוץ הערכה לקבוע בולצמן 
+\begin_inset Formula 
+\[
+\tilde{k}\leftarrow\arg\min_{\tilde{k},c}RMS\left[\left\langle V^{2}\right\rangle ,\tilde{k}\cdot\left(4TG\right)+c\right]
+\]
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename noise3.svg
+	display false
+	scale 63
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ב 
+\begin_inset Formula $A$
+\end_inset
+
+ מוצגת סכמת הניסוי, ב
+\begin_inset Formula $B$
+\end_inset
+
+ סכמת הכיול וב
+\begin_inset Formula $C$
+\end_inset
+
+ מתואר המעגל השקול לחיבור של נגד אל כבל קואקסלי.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+נציין כי שגיאות של 
+\begin_inset Formula $\Delta R,\Delta C,\Delta g\left(v\right)$
+\end_inset
+
+ יביאו לשגיאה כוללת ב 
+\begin_inset Formula $G$
+\end_inset
+
+ מהצורה :
+\begin_inset Formula 
+\begin{align*}
+ & \frac{\left(g\left(\nu\right)\pm\Delta g\left(\nu\right)\right)^{2}}{1+\left(2\pi\nu\left(C\pm\Delta C\right)\left(R\pm\Delta R\right)\right)^{2}}\sim\\
+ & \ \ \frac{g\left(\nu\right)^{2}}{1+\left(2\pi\nu CR\right)^{2}}\cdot\\
+ & \ \ \ \ \cdot\left(1\pm\left(\frac{\Delta R}{R}\right)^{2}\pm\left(\frac{\Delta C}{C}\right)^{2}\pm\frac{\Delta g\left(\nu\right)}{g\left(\nu\right)}+\mathcal{O}\left(\Delta^{4}\right)\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+הרכיב 
+\begin_inset Formula $\left(\frac{\Delta R}{R}\right)^{2}+\left(\frac{\Delta C}{C}\right)^{2}$
+\end_inset
+
+ תורם שגיאה קבועה לאינטגרל בעוד ש 
+\begin_inset Formula $\frac{\Delta g\left(\nu\right)}{g\left(\nu\right)}$
+\end_inset
+
+ תורם שגיאה מהצורה 
+\begin_inset Formula 
+\begin{align*}
+\int_{Width}\frac{g\left(\nu\right)\Delta g\left(\nu\right)}{1+\left(2\pi\nu CR\right)^{2}}d\nu & \le\max_{\nu}\Delta g\left(\nu\right)\cdot\\
+ & \ \ \ \cdot\int_{Width}\frac{g\left(\nu\right)}{1+\left(2\pi\nu\cdot CR\right)^{2}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+מאחר ומיצאנו יותר מ 
+\begin_inset Formula $500$
+\end_inset
+
+ מדידות, )כל קובץ 
+\begin_inset Formula $csv$
+\end_inset
+
+ מכיל במינימום כ 
+\begin_inset Formula $6000$
+\end_inset
+
+ שורות על פני 
+\begin_inset Formula $10$
+\end_inset
+
+ תדרים( נקבל כי 
+\begin_inset Formula $\Delta g\left(\nu\right)\sim\frac{instrument\ error}{\sqrt{500}}\sim\frac{6}{\sqrt{5}}10^{-3}$
+\end_inset
+
+ כאשר את השגיאה לקחנו מהמפרט הטכני: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DMU"
+literal "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{align*}
+ & G+\Delta\sim G\left(1\pm\left(\frac{\Delta R}{R}\right)^{2}\pm\left(\frac{\Delta C}{C}\right)^{2}\right)\pm\\
+ & \ \ \ \pm\frac{6}{\sqrt{5}}10^{-3}\cdot\int_{Width}\frac{g\left(\nu\right)}{1+\left(2\pi\nu\cdot CR\right)^{2}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ולכן אנו מצפים למצוא את קבוע בולצמן בטווח: 
+\begin_inset Formula 
+\begin{align*}
+k= & \frac{\left\langle V^{2}\right\rangle }{4\left(G\pm\Delta G\right)\left(T\pm\Delta T\right)\left(R\pm\Delta R\right)}=\\
+ & \sim\frac{\left\langle V^{2}\right\rangle }{4GTR}\left(1\pm\frac{\Delta G}{G}\pm\frac{\Delta T}{T}\pm\frac{\Delta R}{R}\right)\\
+ & \sim\frac{\left\langle V^{2}\right\rangle }{4GTR}\left(1\pm\frac{\Delta R}{R}\pm\left(\frac{\Delta C}{C}\right)^{2}\pm\frac{\Delta T}{T}\right.\\
+ & \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \left.\pm\frac{6}{\sqrt{5}}10^{-3}\cdot\frac{\int_{Width}\frac{g\left(\nu\right)}{1+\left(2\pi\nu\cdot CR\right)^{2}}}{\int_{Width}\frac{g^{2}\left(\nu\right)}{1+\left(2\pi\nu\cdot CR\right)^{2}}}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+מאחר והחישוב הנ
+\begin_inset Quotes erd
+\end_inset
+
+ל מסורבל מאוד, וכל שגיאה לחוד קטנה מאוד, פשטנו את השגיאה על ידי הקירוב הגס
+ הבא : בטמפ' לקחנו שגיאה של כ 
+\begin_inset Formula $6^{\circ}/296^{\circ}\sim2\%$
+\end_inset
+
+ בנגדים לקחנו שגיאה של מחצית הפרש המקסימלי בין ערך הנגד אותו ממדנו לבין
+ הערך המצופה לפי מה שהיה רשום 
+\begin_inset Formula $0.1\left[M\Omega\right]$
+\end_inset
+
+ ערך הנגד הנמדד היה
+\begin_inset Formula $8.42\left[M\Omega\right]$
+\end_inset
+
+ בעוד שהערך המצופה היה 
+\begin_inset Formula $8.2\left[M\Omega\right]$
+\end_inset
+
+, כלומר שגיאה של 
+\begin_inset Formula $1.25\%$
+\end_inset
+
+, ערכי הקבל נמדדו ב 
+\begin_inset Formula $100pF$
+\end_inset
+
+ כלומר באזור ה 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+, מדדנו לבסוף ערך של 
+\begin_inset Formula $120pF$
+\end_inset
+
+ אבל מאחר והמדידה הייתה בעייתית )יצוב המוליטמטר על פני מגעים( החלטנו פשוט
+ לקחת את השגיאה 
+\begin_inset Formula $\left(\frac{\Delta C}{C}\right)^{2}\sim6\%$
+\end_inset
+
+, חישוב של מנת האינטגרל נתן ערך זניח )גם ללא הפקטור(, אך אנו מאמינים כי
+ יש גורם נוסף שלא התחשבנו בו, מאחר וציפנו כי עיקר השגיאה תגיעה מחישוב הערך
+ 
+\begin_inset Formula $G$
+\end_inset
+
+, לכן ניתן ערך של 
+\begin_inset Formula $1\%$
+\end_inset
+
+.
+ סך כל השגיאה היא 
+\begin_inset Formula $10.25\%$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename noise1.svg
+	display false
+	scale 66
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ב 
+\begin_inset Formula $A$
+\end_inset
+
+ מוצגת סכמת הניסוי, ב
+\begin_inset Formula $B$
+\end_inset
+
+ סכמת הכיול וב
+\begin_inset Formula $C$
+\end_inset
+
+ מתואר המעגל השקול לחיבור של נגד אל כבל קואקסלי.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+אימות אל מול האפס המוחלט.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename noise2.svg
+	display false
+	scale 66
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ב 
+\begin_inset Formula $A$
+\end_inset
+
+ מוצגת סכמת הניסוי, ב
+\begin_inset Formula $B$
+\end_inset
+
+ סכמת הכיול וב
+\begin_inset Formula $C$
+\end_inset
+
+ מתואר המעגל השקול לחיבור של נגד אל כבל קואקסלי.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+חזרה אל 
+\begin_inset Formula $V^{2}=4kTRG$
+\end_inset
+
+ מציאת 
+\begin_inset Formula $ax+b$
+\end_inset
+
+ בשתי דרכים, באחת, על ידי פשוט התאמה.
+ בשניה על ידי, לקיחת ה 
+\begin_inset Formula $G$
+\end_inset
+
+ בסעיף הקודם 
+\begin_inset Formula $\pm\sigma$
+\end_inset
+
+.
+ 
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "DMU"
+key "DMU"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+name "34401A Digital Multimeter, 6½ Digit"
+target "https://www.keysight.com/il/en/product/34401A/digital-multimeter-6-digit.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

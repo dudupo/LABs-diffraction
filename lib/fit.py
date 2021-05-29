@@ -9,7 +9,7 @@ def g_derivate_err(time, distance, f, eps = 0.00001):
     return (f(time + eps) - f(time + eps)) / eps
 
 def g_extract_coef( time, distance, f ,p0=None):
-    popt, pcov = curve_fit(f, time, distance, p0=p0)
+    popt, pcov = curve_fit(f, time, distance, p0=p0, maxfev=100000)
     _range = np.linspace( np.min(time) , np.max(time), 1000 )
     values = f(_range, *popt)
     val_in_given_range = f(time, *popt)
@@ -29,14 +29,14 @@ def g_extract_coef_drop( time, distance, f, drop_points ):
 
 def extract_coef( time, distance ):
     def f(x, a, b, c, d):
-        return ( b* np.sin(a*x )/(a*x ) )**2  
-    return g_extract_coef(time, distance, f)
+        return ( b* np.sin(a*x+c  )/(a*x+c ) )**2  
+    return g_extract_coef(time, distance, f, p0=[ 10, 2, 0, 0 ])
 
 def extract_coef2( time, distance ):
-    def f(x, a, b, c, a2): # c2, d, e, e2):
-        return ( b* np.sin(a*x+c)/(a*x+c) *  np.cos(a2*x))**2 
+    def f(x, a, b, c, c2, a2): # c2, d, e, e2):
+        return ( b* np.sin(a*x+c)/(a*x+c) *  np.cos(a2*x+c2))**2 
         # return ( b* np.sin(a*np.sin(x) + c)/(a*x + d) *  np.cos(a2*np.sin(x) +c2 ))**2   
     
-    return g_extract_coef(time, distance, f, p0=[ 10, 1, 0.5, 200  ] )  
+    return g_extract_coef(time, distance, f, p0=[ 10, 1, 0, 0, 200  ] )  
 
     
