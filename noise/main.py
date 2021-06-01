@@ -96,7 +96,7 @@ def main():
     plt.xlabel(r"frequency $ \nu_{[Hz]} $")
     plt.ylabel(r"$g(\nu)$")
     plt.legend([r"measured points", r"continuously line"])
-    plt.savefig("doc/noise3.svg")
+    plt.savefig("doc/noise31.svg")
     # result = integrate.quad(lambda x: special.jv(2.5,x), 0, 4.5)
     plt.clf()
     print( "GV : {0}".format(PEAKS))
@@ -197,7 +197,7 @@ def main():
         print("-- bolzman :  -- ")
         print( popt)
         # plt.show()
-        plt.savefig("doc/noise1.svg")
+        plt.savefig("doc/noise11.svg")
         plt.clf()
     # print( (G1 + G2)/2 )
 
@@ -213,7 +213,7 @@ def main2():
     for dataset in datasets:  
         V =  dataset.values.transpose()[-1].astype(np.float64)
         U = gaussian_filter( V, sigma=1)
-        plt.plot( U )
+        # plt.plot( U )
         # U = gaussian_filter( U, sigma=2)
         Q = U[10:] - U[:-10] #np.abs(U[10:] - U[:-10]) > 0.4
         peaks2, _ = find_peaks(Q , distance=400)
@@ -221,17 +221,23 @@ def main2():
         # plt.plot(Q)
         # plt.scatter( Q, U[Q] )
         # peaks2 = peaks2[:-10] 
-        plt.plot(np.arange(len(U)-10)[peaks2],  U[10:][peaks2], marker='o')
+        # plt.plot(np.arange(len(U)-10)[peaks2],  U[10:][peaks2], marker='o')
         
         ret = U[10:][peaks2]
         
         # plt.plot( V)
-        plt.show()
+        # plt.show()  
 
     Vin = np.array([20, 40, 60, 80, 120, 200, 240, 280] ) * 10**-3
     
-    # plt.plot(Vin,  ret)
-    # plt.show()
+    plt.title(r"$ V_{out} $ as function of the input voltage $ V_{in} $")
+    plt.plot(Vin,  ret  , c="teal")
+    plt.scatter( Vin,  ret, s=5, c="black" )
+    plt.xlabel(r"$V_{in} [mV]$")
+    plt.ylabel(r"$ V_{out} $")
+
+
+    plt.savefig("doc/noise4.svg")
 
 from Thermocouple import tc
 def main3():
@@ -290,10 +296,10 @@ def main3():
     plt.xlabel(r"$T_[K]$")
     plt.ylabel(r"$\langle V^2 \rangle_{[V^2]}$")
     print(popt) 
-    plt.savefig("doc/noise2.svg")
+    plt.savefig("doc/noise21.svg")
 
 
 if __name__ == "__main__":
-    main()
+    # main()
     # main3()
-    # main2()
+    main2()
