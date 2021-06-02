@@ -99,22 +99,28 @@
 \lang english
 centigrade scale
 \lang hebrew
-( 
-\emph on
-)להכניס תוצאות(
-\emph default
-.
- 
+(.
+ התוצאות אליהן הגענו הן קבוע בולצמן
 \series bold
-בולצמן 
+ 
 \begin_inset Formula $2.16\cdot10^{-23}$
 \end_inset
 
-, האפס המוחלט 
-\begin_inset Formula $0.0057_{\left[K^{\circ}\right]}$
+
+\series default
+, האפס
+\series bold
+ 
+\series default
+המוחלט
+\series bold
+ 
+\begin_inset Formula $-270\pm5_{\left[C^{\circ}\right]}$
 \end_inset
 
 
+\series default
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -1004,7 +1010,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename D:/home/davidponar/workspace/study/LABs-diffraction/diffraction/lyx/noise_3.jpg
+	filename מערכת שקולה.png
 	display false
 	scale 12
 
@@ -1352,6 +1358,40 @@ C
 \end_layout
 
 \begin_layout Standard
+חישוב זה נותן שקבוע בולצמן הנו
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $2.16\cdot10^{-23}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1379,7 +1419,7 @@ status open
 \end_inset
 
 .
- הנקודות השחורות, הן ערכי ההגברה שנמדדו עבור תדרים )ערכי 
+ הנקודות השחורות הן ערכי ההגברה שנמדדו עבור תדרים )ערכי 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -1447,7 +1487,11 @@ status open
 \begin_inset Formula $error-bars$
 \end_inset
 
-.
+, אך עם זאת, התוצאה שקיבלנו גדולה פי פקטור קטן יחסית )
+\begin_inset Formula $\approx1.57$
+\end_inset
+
+( מקבוע בולצמן הידוע.
 \end_layout
 
 \end_inset
@@ -1485,7 +1529,7 @@ status open
 \begin_inset Formula $20$
 \end_inset
 
- ל 
+ ל-
 \begin_inset Formula $280$
 \end_inset
 
@@ -1574,12 +1618,13 @@ status open
 \begin_inset Formula $\hat{x}$
 \end_inset
 
- ערכי הטמפרטורה בקלווין, הנקודות השחורות הינם כ 
+ ערכי הטמפרטורה בקלווין.
+ הנקודות השחורות הינן כ-
 \begin_inset Formula $10^{3}$
 \end_inset
 
  נקודות אשר הוגרלו באופן אחיד מהמדידה הרציפה.
- הקו הכחול היא ההתאמה הלניארית, אשר התקבלה.
+ הקו הכחול היא ההתאמה הלניארית אשר התקבלה.
  
 \end_layout
 
@@ -1594,29 +1639,110 @@ status open
 \end_layout
 
 \begin_layout Standard
-חזרה אל 
-\begin_inset Formula $V^{2}=4kTRG$
-\end_inset
+עבור קביעת האפס המוחלט נשתמש במשוואה )
+\numeric on
+7
+\numeric off
+(, כאשר נחבר נגד יחיד ונמדוד את המתח על פני טמפרטורות שונות.
+ הנגד שהשתמשנו בו הוא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
 
- מציאת 
-\begin_inset Formula $ax+b$
-\end_inset
-
- בשתי דרכים, באחת, על ידי פשוט התאמה.
- בשניה על ידי, לקיחת ה 
-\begin_inset Formula $G$
-\end_inset
-
- בסעיף הקודם 
-\begin_inset Formula $\pm\sigma$
+\begin_inset Formula $R=1.76\pm0.01M\Omega$
 \end_inset
 
 .
- 
-\begin_inset Formula $ $
+ נגד זה הוכנס למכל של חנקן נוזלי, 
+\end_layout
+
+\begin_layout Standard
+ובאמצעות חיבור תרמוקאפל בצד אחד לנגד ובצד השני למי קרח )טמפרטורה של 
+\begin_inset Formula $0^{\circ}C$
 \end_inset
 
+ לרפרנס( נוכל לדעת את הטמפטורה בצלזיוס.
+ 
+\end_layout
 
+\begin_layout Standard
+מציאת האפס המוחלט בוצעה על ידי התאמת הדאטה )המקיים את משוואה )
+\numeric on
+7
+\numeric off
+(( לישר מהצורה 
+\begin_inset Formula $y=ax+b$
+\end_inset
+
+ )האיבר החיבורי
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $b$
+\end_inset
+
+ מתווסף מאחר שהדאטה נלקח בצלזיוס(, הצבת 
+\begin_inset Formula $y=0$
+\end_inset
+
+ וחלוקה ב-
+\begin_inset Formula $4kRG$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+חישוב זה נותן שטמפרטורת האפס המוחלט הינה 
+\begin_inset Formula $-270\pm10C^{\circ}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*

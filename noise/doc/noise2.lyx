@@ -99,28 +99,34 @@
 \lang english
 centigrade scale
 \lang hebrew
-( 
-\emph on
-)להכניס תוצאות(
-\emph default
-.
- 
+(.
+ התוצאות אליהן הגענו הן קבוע בולצמן
 \series bold
-בולצמן 
+ 
 \begin_inset Formula $2.16\cdot10^{-23}$
 \end_inset
 
-, האפס המוחלט 
-\begin_inset Formula $0.0057_{\left[K^{\circ}\right]}$
+
+\series default
+, האפס
+\series bold
+ 
+\series default
+המוחלט
+\series bold
+ 
+\begin_inset Formula $-270\pm10_{\left[C^{\circ}\right]}$
 \end_inset
 
 
+\series default
+.
 \end_layout
 
 \begin_layout Subsection*
 
 \series bold
-חלק ראשון
+חלק ראשון - רקע תיאורטי ומערכת הניסוי
 \end_layout
 
 \begin_layout Standard
@@ -379,11 +385,41 @@ dV_{j}^{2}=4kTRd\nu\ \ \left(2\right)
 2
 \numeric off
 ( הייתה תיאור נכון של המערכת.
- בפועל, לכבלים הקואקסיאליים בהם השתמשנו יש קיבול מסויים שנסמן ב-
+ בפועל - לכבלים קואקסיאליים, בהם השתמשנו כדי לחבר את רכיבי המעגל, יש קיבול
+ מסויים שנסמן ב-
 \lang english
 C
 \lang hebrew
-.
+, וניתן להגדיר מעגל שקול עם רכיבים אידיאליים המכיל קבל )איור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+(.
  במצב כזה, עבור נגד
 \family roman
 \series medium
@@ -651,10 +687,445 @@ V^{2}=4RkTG\ \ \left(7\right)
 .
 \end_layout
 
+\begin_layout Paragraph*
+
+\numeric on
+1.3
+\family roman
+\series bold
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מערכת הניסוי
+\end_layout
+
+\begin_layout Standard
+בניסוי זה השתמשנו בשני מעגלים שונים - הראשון )מעגל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+A
+\lang hebrew
+( שימש אותנו למציאת פונקציית ההגבר 
+\begin_inset Formula $g(\nu)$
+\end_inset
+
+, והשני )מעגל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+B
+\lang hebrew
+( שימש למדידת ערך ה-
+\lang english
+mean square
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של המתח, עבור נגדים שונים.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename File_000.jpeg
+	display false
+	scale 12
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+תרשים המעגלים ששימשו אותנו בניסוי.
+ תיאור מילולי, מימין לשמאל: מעגל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+A
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- מחולל אותות, מנחת, מגבר, פילטר ומד מתח.
+ מעגל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+B
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- נגד משתנה, מגבר, פילטר ומד מתח.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename מערכת שקולה.png
+	display false
+	scale 12
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+תיאור מעגל אידיאלי שקול )מימין( עבור מוליך עם התגדות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+R
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+המחובר למכשיר מדידה עם כבלים בעלי קיבול
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+C
+\lang hebrew
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection*
 
 \series bold
-חלק שני
+חלק שני - תוצאות
 \end_layout
 
 \begin_layout Paragraph*
@@ -707,72 +1178,7 @@ V^{2}=4RkTG\ \ \left(7\right)
 \begin_inset Formula $\sim\sqrt{10^{-23}\cdot10^{7}\cdot10^{2}}<10^{-6}\left[V\right]$
 \end_inset
 
-
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/lyx/noise_3.jpg
-	display false
-	scale 12
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-ב-
-\begin_inset Formula $A$
-\end_inset
-
- מוצגת סכמת הניסוי, ב-
-\begin_inset Formula $B$
-\end_inset
-
- סכמת הכיול וב-
-\begin_inset Formula $C$
-\end_inset
-
- מתואר המעגל השקול לחיבור של נגד אל כבל קואקסלי.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
+.
  נזדקק למגבר על מנת להגיע לסקלה אותה מכשירי המדידה שלנו יכולים למדוד.
  השתמשנו במגבר המחובר לספק של 
 \begin_inset Formula $15\left[V\right]$
@@ -943,12 +1349,46 @@ status open
 חילוץ הערכה לקבוע בולצמן 
 \begin_inset Formula 
 \[
-\tilde{k}\leftarrow\arg\min_{\tilde{k},c}RMS\left[\left\langle V^{2}\right\rangle ,\tilde{k}\cdot\left(4TG\right)+c\right]
+\tilde{k}\leftarrow\arg\min_{\tilde{k},c}RMS\left[\left\langle V^{2}\right\rangle ,\tilde{k}\cdot\left(4TRG\right)+c\right]
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+חישוב זה נותן שקבוע בולצמן הנו
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $2.16\cdot10^{-23}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -979,11 +1419,11 @@ status open
 \end_inset
 
 .
- הנקודות השחורות, הן ערכי ההגברה שנמדדו עבור תדרים 
+ הנקודות השחורות הן ערכי ההגברה שנמדדו עבור תדרים )ערכי 
 \begin_inset Formula $\nu$
 \end_inset
 
- ים שונים, הקו הכחול הוא המשכה של הנקודות באופן גס.
+( שונים, הקו הכחול הוא המשכה של הנקודות באופן גס.
  
 \end_layout
 
@@ -1038,16 +1478,20 @@ status open
 \end_inset
 
  ביחס לנגד אותו חיברנו למגבר.
- ה 
+ ה-
 \begin_inset Formula $error-bars$
 \end_inset
 
-, נמתחים מישר ההתאמה, באימות מלא של התאוריה הקו האפור היה אמור להמצא בטווחי
- ה
+ נמתחים מישר ההתאמה, באימות מלא של התאוריה הקו האפור היה אמור להמצא בטווחי
+ ה-
 \begin_inset Formula $error-bars$
 \end_inset
 
-.
+, אך עם זאת, התוצאה שקיבלנו גדולה פי פקטור קטן יחסית )
+\begin_inset Formula $\approx1.57$
+\end_inset
+
+( מקבוע בולצמן הידוע.
 \end_layout
 
 \end_inset
@@ -1080,12 +1524,12 @@ status open
 \begin_inset Formula $\hat{y}$
 \end_inset
 
- מוצגים ערכי ההמתח המתקבלים לאחר הגברה עבור ערכי מתח נכנסים שונים בטווח
- שבין 
+ מוצגים ערכי המתח המתקבלים לאחר הגברה כפונקציה של ערכי מתח נכנסים שונים
+ בטווח שבין 
 \begin_inset Formula $20$
 \end_inset
 
- ל 
+ ל-
 \begin_inset Formula $280$
 \end_inset
 
@@ -1174,12 +1618,13 @@ status open
 \begin_inset Formula $\hat{x}$
 \end_inset
 
- ערכי הטמפרטורה בקלווין, הנקודות השחורות הינם כ 
+ ערכי הטמפרטורה בקלווין.
+ הנקודות השחורות הינן כ-
 \begin_inset Formula $10^{3}$
 \end_inset
 
  נקודות אשר הוגרלו באופן אחיד מהמדידה הרציפה.
- הקו הכחול היא ההתאמה הלניארית, אשר התקבלה.
+ הקו הכחול היא ההתאמה הלינארית אשר התקבלה.
  
 \end_layout
 
@@ -1194,37 +1639,123 @@ status open
 \end_layout
 
 \begin_layout Standard
-חזרה אל 
-\begin_inset Formula $V^{2}=4kTRG$
-\end_inset
+עבור קביעת האפס המוחלט נשתמש במשוואה )
+\numeric on
+7
+\numeric off
+(, כאשר נחבר נגד יחיד ונמדוד את המתח על פני טמפרטורות שונות.
+ הנגד שהשתמשנו בו הוא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
 
- מציאת 
-\begin_inset Formula $ax+b$
-\end_inset
-
- בשתי דרכים, באחת, על ידי פשוט התאמה.
- בשניה על ידי, לקיחת ה 
-\begin_inset Formula $G$
-\end_inset
-
- בסעיף הקודם 
-\begin_inset Formula $\pm\sigma$
+\begin_inset Formula $R=1.76\pm0.01M\Omega$
 \end_inset
 
 .
- 
-\begin_inset Formula $ $
+ נגד זה הוכנס למכל של חנקן נוזלי, 
+\end_layout
+
+\begin_layout Standard
+ובאמצעות חיבור תרמוקאפל בצד אחד לנגד ובצד השני למי קרח )טמפרטורה של 
+\begin_inset Formula $0^{\circ}C$
 \end_inset
 
+ לרפרנס( נוכל לדעת את הטמפטורה בצלזיוס.
+ 
+\end_layout
 
+\begin_layout Standard
+מציאת האפס המוחלט בוצעה על ידי התאמת הדאטה )המקיים את משוואה )
+\numeric on
+7
+\numeric off
+(( לישר מהצורה 
+\begin_inset Formula $y=ax+b$
+\end_inset
+
+ )האיבר החיבורי
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $b$
+\end_inset
+
+ מתווסף מאחר שהדאטה נלקח בצלזיוס(, הצבת 
+\begin_inset Formula $y=0$
+\end_inset
+
+ וחלוקה ב-
+\begin_inset Formula $4kRG$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+חישוב זה נותן שטמפרטורת האפס המוחלט הינה 
+\begin_inset Formula $-270\pm10C^{\circ}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+השגיאה נוספה כתוצאה משינויים קטנים בטמפרטורת מי הקרח )הרפרנס( שהושארו בחדר
+ ושגיאות מכשירי המדידה.
 \end_layout
 
 \begin_layout Subsection*
-נספחים, 
+נספחים
 \end_layout
 
 \begin_layout Paragraph*
-חישוב השגיאה בקבוע בולצמן,
+חישוב השגיאה בקבוע בולצמן
 \end_layout
 
 \begin_layout Standard
@@ -1236,7 +1767,7 @@ status open
 \begin_inset Formula $G$
 \end_inset
 
- מהצורה :
+ מהצורה:
 \begin_inset Formula 
 \begin{align*}
  & \frac{\left(g\left(\nu\right)\pm\Delta g\left(\nu\right)\right)^{2}}{1+\left(2\pi\nu\left(C\pm\Delta C\right)\left(R\pm\Delta R\right)\right)^{2}}\sim\\
@@ -1342,7 +1873,7 @@ k= & \frac{\left\langle V^{2}\right\rangle }{4\left(G\pm\Delta G\right)\left(T\p
 \begin_inset Formula $0.1\left[M\Omega\right]$
 \end_inset
 
- ערך הנגד הנמדד היה
+ ערך הנגד הנמדד היה 
 \begin_inset Formula $8.42\left[M\Omega\right]$
 \end_inset
 
