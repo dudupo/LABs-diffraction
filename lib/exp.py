@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-COLORS = [ "teal", "olive", "darkslategray" ]
+COLORS = [ "teal", "olive", "darkslategray" , "slategray" ]
 
 def gencolor ():
     i = 0
@@ -34,17 +34,17 @@ def plotlabels():
 
 
 class FittedObj:
-    def __init__(self, time, distance, func, drop =None):
+    def __init__(self, time, distance, func, drop =None, bounds=None):
         self.time, self.distance, self.func = time, distance, func
         if drop is not None:
-            self.func_parmas = ft.g_extract_coef_drop(time, distance, func, drop_points=drop)
+            self.func_parmas = ft.g_extract_coef_drop(time, distance, func, drop_points=drop, bounds=bounds)
         else:
-            self.func_parmas = ft.g_extract_coef(time, distance, func) 
+            self.func_parmas = ft.g_extract_coef(time, distance, func, bounds=bounds) 
         
         self.funclam = lambda  x : func( x, *self.func_parmas[0])
         # self.yerr = g_derivate_err( time, distance, self.funclam)  
 
-    def plot( self, max_err= 0.005  ):
+    def plot( self, max_err= 0.005, _range=None  ):
         indices = np.abs(self.funclam(self.time) - self.distance) <max_err  
         print(self.func_parmas[-1])
         
@@ -55,7 +55,10 @@ class FittedObj:
 
 
         plt.errorbar( self.time[indices], self.distance[indices], yerr=yerr , fmt='o', c= "black" ,alpha=0.2) 
-        plt.plot( self.time, self.funclam(self.time) , c = next(gColors))
+        
+        _range = self.time if _range is None else _range
+        
+        plt.plot( _range, self.funclam(_range) , c = next(gColors))
         # plt.show()
 
 def file_type(_str):
