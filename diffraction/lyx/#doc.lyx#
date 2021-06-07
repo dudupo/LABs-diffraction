@@ -89,22 +89,104 @@
 מיכאל כהן ודויד פונרובסקי 
 \end_layout
 
+\begin_layout Paragraph*
+רקע תיאורטי
+\end_layout
+
 \begin_layout Standard
-חלק ראשון, הצגה של החלק הראשון, תיאור הניסוי, הצגת הנוסחה הכללית והקירוב,
- הצגת השגיאות, גרף ראשון, שתי מדידות והתאמה לסינק, גרף שלישי, חילוץ מקדם,
- ואימות אל מול אורך הגל.
+גל מישורי מונוכרומטי ניתן לתיאור בתור שדה התלוי בזמן ובמרחב 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\psi(\vec{r},t)=Ae^{i(\vec{k}\cdot\vec{r}-\omega t)}=U(\vec{r})e^{-i\omega t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כאשר 
+\begin_inset Formula $\vec{k}=(k_{x},k_{y},k_{z})$
+\end_inset
+
+ ו-
+\begin_inset Formula $\omega=c\sqrt{k_{x}^{2}+k_{y}^{2}+k_{z}^{2}}$
+\end_inset
+
+.
+ עבור גל כזה ניתן לתאר את המרחב כאוסף רציף של מישורים שווי-פאזה.
+ מישורים אלה נקראים חזיתות הגל.
  
 \end_layout
 
 \begin_layout Standard
-הצגת התאמה לנוסחה המדוייקת יותר, ולהראות את נכונות הקירוב.
- חלק שני, הצגת הפתרון עבור שתי סדקים.
- אימות עוד פעם אל מול אורך הגל.
+עצמה של גל מוגדרת להיות
+\begin_inset Formula 
+\[
+I(\vec{r})=|U(\vec{r})|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כאשר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
  
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\lang hebrew
+ גלים שונים נפגשים, ניתן לתאר גל יחיד שקול שהוא סכום הגלים, מעקרון הסופרפוזיציה:
+ 
+\begin_inset Formula 
+\[
+\psi(\vec{r},t)=\sum_{j=1}^{n}\psi_{j}(\vec{r},t)=\sum_{j=1}^{n}U_{j}(\vec{r})e^{-\omega_{j}t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+במקרה שבו 
+\begin_inset Formula $n=2$
+\end_inset
+
+, העוצמה של גל מוגדרת להיות
 \end_layout
 
 \begin_layout Paragraph
-תיאור מערכת הניסוי.
+תיאור מערכת הניסוי
 \end_layout
 
 \begin_layout Standard
@@ -186,33 +268,66 @@
 \end_inset
 
  יציין את המרחק המינמלי )האנך( אותו עוברת קרן האור עד להגעה למישור המסך.
- לאורך הניסוי אנו מעברים גלאי, הנע במסלול שבקרוב מתלכד עם המסך.
- למעשה, מסלול זה הוא מסלול מעגלי, ולכן בחרנו למדוד רק עבור ערכי 
-\begin_inset Formula $|\theta|<\frac{\pi}{12}$
+ ב
+\begin_inset Formula $B$
+\end_inset
+
+ נמצא הגלאי, הנע על מסלול מעגלי שבקרוב מתלכד עם המישור, הזווית הנפרשת ממנו
+ אל האנך, היא דרגת החופש שלנו במערכת אותה נסמן ב 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ בחרנו למדוד רק עבור ערכי 
+\begin_inset Formula $|\theta|<\frac{2\pi}{24}$
 \end_inset
 
  )
-\begin_inset Formula $\pm30^{\circ}$
+\begin_inset Formula $\pm15^{\circ}$
 \end_inset
 
 ( שם מתקיים כי מסדר ראשון 
 \begin_inset Formula 
 \[
-\sin\left(\theta\right)\sim\theta+\mathcal{O}\left(\frac{\theta^{3}}{6}\right)\le\theta+\frac{\pi^{3}}{6^{4}\cdot2^{3}}\le\theta+3\cdot10^{-3}
+\tan\left(\theta\right)\sim\theta+\mathcal{O}\left(\frac{\theta^{3}}{3}\right)\le\theta+\frac{1}{3}\left(\frac{2\pi}{24}\right)^{3}\le\theta+7\cdot10^{-4}
 \]
 
 \end_inset
 
- מגאומטריה של תיכון )זווית בין משיק למיתר + דמיון משולשים( נקבל כי מרחק
- הנקודה מהמסך  
-\begin_inset Formula $ $
+ ולכן נוכל להצדיק קירובי זוויות קטנות 
+\begin_inset Formula $\frac{x}{z}=\tan\theta\rightarrow|x-z\theta|\le\sim\frac{1}{20}$
 \end_inset
 
-אך 
-\begin_inset Formula $z$
+.
+ התחשבות השגיאה ב 
+\begin_inset Formula $x$
 \end_inset
 
- )שהוא גם רדיוס המעגל( מקיים 
+, תעמיס על החישובים ואינה תתרום בסדרי גדול מעבר לתרומות שגיאות אחרות.
+ לכן לא נתחשב בה, ונניח כי ערכי את ה 
+\begin_inset Formula $x$
+\end_inset
+
+ עלפני המסך אנו מודדים בקרוב טוב.
+ נסמן ב 
+\begin_inset Formula $x^{\prime}$
+\end_inset
+
+ נקודה בה הקרן יכולה להיות במישור השריג, אורך הגל מקיים 
+\begin_inset Formula 
+\[
+\frac{1}{\lambda}\cdot x^{\prime2}\le\frac{1}{\lambda}\cdot W^{2}\sim\frac{\left(\mu m\right)^{2}}{\mu m}\le\mathcal{O}\left(10^{-6}z\right)
+\]
+
+\end_inset
+
+ כלומר קירוב השדה הרחוק של פרנוהפר מוצדק במערכת.
+\end_layout
+
+\begin_layout Standard
+את הזווית ועוצמת האור אנו מודדים על ידי חשיינים שאנו מניחים כי הם מבצעים
+ רק פעולות לניאריות על הקלט, כלומר מוסיפים רק כפולות בקבוע.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -315,7 +430,7 @@ status open
 
 \begin_layout Enumerate
 תחילה אנו מוצאים את תדירות הסינק 
-\begin_inset Formula $\alpha_{W}=\arg\min RMS\left(V\left(x\right),Amp\cdot sinc^{2}\left(\alpha x\right)\right)$
+\begin_inset Formula $\alpha_{W}=\arg\min_{\alpha}RMS\left(V\left(x\right),Amp\cdot sinc^{2}\left(\alpha x\right)\right)$
 \end_inset
 
  עבור כל ניסוי.
@@ -423,6 +538,52 @@ status open
 
  בנפרד, ונאמת את ערך אורך הגל בנפרד.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
+	display false
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

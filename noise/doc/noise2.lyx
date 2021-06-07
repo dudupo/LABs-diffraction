@@ -103,12 +103,12 @@ centigrade scale
  התוצאות אליהן הגענו הן קבוע בולצמן
 \series bold
  
-\begin_inset Formula $2.16\cdot10^{-23}$
+\begin_inset Formula $2.16\pm0.22)\cdot10^{-23}[\frac{J}{K}]$
 \end_inset
 
 
 \series default
-, האפס
+(, האפס
 \series bold
  
 \series default
@@ -1385,7 +1385,12 @@ C
 \noun default
 \color inherit
 
-\begin_inset Formula $2.16\cdot10^{-23}$
+\begin_inset Formula $(2.16\pm0.22)\cdot10^{-23}[\frac{J}{K}]$
+\end_inset
+
+.
+ הערך הידוע הוא 
+\begin_inset Formula $1.38\cdot10^{-23}[\frac{J}{K}]$
 \end_inset
 
 .
@@ -1742,12 +1747,26 @@ status open
 \begin_inset Formula $-270\pm10C^{\circ}$
 \end_inset
 
+, כאשר הערך הידוע הוא 
+\begin_inset Formula $-273.15C^{\circ}$
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Standard
 השגיאה נוספה כתוצאה משינויים קטנים בטמפרטורת מי הקרח )הרפרנס( שהושארו בחדר
  ושגיאות מכשירי המדידה.
+\end_layout
+
+\begin_layout Subsection*
+סיכום
+\end_layout
+
+\begin_layout Standard
+לסיכום, השימוש בתיאוריה של נייקוויסט עבור תופעת רעש ג'ונסון הביא אותנו לחישוב
+ מדוייק יחסית של טמפרטורת האפס המוחלט )הערך הידוע נמצא בטווח השגיאה(, ולחישוב
+ פחות מדוייק אך בסדרי הגודל המתאימים עבור קבוע בולצמן.
 \end_layout
 
 \begin_layout Subsection*

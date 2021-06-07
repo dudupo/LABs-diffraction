@@ -7,9 +7,9 @@ D = { (0,0) : 1 , (1,0) : 1 , (1,1) : p }
 
 from random import choice, gammavariate
 import numpy as np
-from copy import deepcopy 
-def exp(k):
-    x = 2
+from copy import deepcopy
+def exp():
+    x = 1
     t = 0 
     L = []
     while x < 2*k:
@@ -42,7 +42,7 @@ def f(k , t, _dict =D):
     return _dict[(k,t)]
 
 import matplotlib.pyplot as plt
-import numpy as np 
+import numpy as np
 
 
 
@@ -135,6 +135,13 @@ from lib.exp import Exp, FittedObj, gencolor, glabels, plotlabels, gColors, putl
 import matplotlib
 matplotlib.rcParams['text.usetex'] = True
 
+from skimage.measure import regionprops
+
+
+
+
+
+
 
 if __name__ == "__main__":
     _keyword = "YFP"
@@ -183,11 +190,8 @@ if __name__ == "__main__":
 
     print(propb[7])
 
-    for i in reversed( range(2, 15) ) :
-        plt.plot(  50*i + np.arange(250) , 5*i + propb[i] , c=next(gColors) )
-        # exp(i)
-        sim_main(i)
-        # plt.plot( )
-    plt.xlabel(r"time ticks")
-    plt.ylabel(r"$ \sum{ \frac{\psi_i}{\psi_0 } } \ge k  $")
-    plt.savefig("./svg/fig1.svg")
+    # for i in reversed( range(2, 15) ) :
+    #     plt.plot(  50*i + np.arange(250) , 5*i + propb[i] , c=next(gColors) )
+    # plt.xlabel(r"time ticks")
+    # plt.ylabel(r"$ \sum{ \frac{\psi_i}{\psi_0 } } \ge k  $")
+    # plt.savefig("./svg/fig1.svg")
