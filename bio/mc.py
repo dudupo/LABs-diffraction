@@ -60,7 +60,6 @@ def match_frames(f1, f2):
     if f1 is None:
         return [f2]
     for colony in f1:
-        print(colony)
         minindex = np.argmin( np.vectorize( \
             lambda _f2 : compute_dist(colony[-1], _f2)) ( f2 ) )
         colony.append(f2[minindex])
@@ -106,7 +105,6 @@ def build_position_colonies(_path):
             __file = "{0}/{1}".format(dirpath, _filename)
             print(__file)
             cur_frame = get_rect_arr(read_image(__file, 1))
-            print(cur_frame)
 
             colonies_arr = match_frames(colonies_arr, cur_frame)
     return colonies_arr if colonies_arr is not None else []
@@ -120,9 +118,7 @@ def run_on_all_positions():
 
 def get_multi_factor(k,t):
     colonies = run_on_all_positions()
-    print(colonies)
     pkt = np.zeros((k,t))
-    # print(colonies)
     for colony in colonies:
         for j, col_t in enumerate(colony):
             if j < t:
@@ -169,7 +165,6 @@ def find_regions(image):
             minr, minc, maxr, maxc = region.bbox
             rect = mpatches.Rectangle((minc, minr), maxc - minc, maxr - minr,
                                       fill=False, edgecolor='red', linewidth=2)
-            print(rect)
             ax.add_patch(rect)
 
 
