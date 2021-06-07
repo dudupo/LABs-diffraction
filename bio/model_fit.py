@@ -71,8 +71,8 @@ def estimate_distribute(_shape):
     def _estimate_distribute(empty_propb, p):
         initiallstate_copy = deepcopy(initiallstate)
         ret = deepcopy(empty_propb)
-        print(ret.shape)
-        
+
+        print ( f" value of p : {p}")        
         # hook
         if ret.shape != _shape:
             ret = np.zeros\
@@ -87,7 +87,7 @@ def estimate_distribute(_shape):
 def model_fit( propb_mes ):
     empty_propb = np.zeros( shape=propb_mes.shape ).astype(np.float128)
     # popt, (pcov, (_range, values)) , MSR  =
-    return  ft.g_extract_coef( empty_propb, deepcopy(propb_mes).flatten(), estimate_distribute(empty_propb.shape)  )
+    return  ft.g_extract_coef( empty_propb, deepcopy(propb_mes).flatten(), estimate_distribute(empty_propb.shape) , p0=[0.5] )
 
 def plot_propb(propb):
     for i in reversed( range(1,len(propb), 2) ):
@@ -97,7 +97,7 @@ def plot_propb(propb):
 
 if __name__ == "__main__":
     
-    prob =  sim(20, 40, number_of_exp=500)
+    prob =  sim(20, 40, number_of_exp=50000)
     plot_propb(normalize_propb(deepcopy( prob) ))
     plt.show()
     
