@@ -1,1 +1,1 @@
-![caption](bio/out2.mp4)
+![caption](out2.mp4)
