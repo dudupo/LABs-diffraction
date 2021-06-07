@@ -39,7 +39,7 @@ def im_disp(im):
 
 def make_binary(img):
     thresh = 20/255
-    # img = ndimage.gaussian_filter(img, sigma=2)
+    img = ndimage.gaussian_filter(img, sigma=2)
     img[img <= thresh ] = 0
     img[img > thresh ] = 1
     return dilation(img, square(7))
@@ -103,20 +103,19 @@ def build_position_colonies(_path):
         DIRname = dirpath.split("/")[-1]
         for _filename in filter(lambda s: ("00.tif" in s) and (_keyword in s), filenams):
             img_num = int(_filename.split("_")[1])
-            if img_num < 3:
-                __file = "{0}/{1}".format(dirpath, _filename)
-                print(__file)
-                cur_frame = get_rect_arr(read_image(__file, 1))
-                print(cur_frame)
+            __file = "{0}/{1}".format(dirpath, _filename)
+            print(__file)
+            cur_frame = get_rect_arr(read_image(__file, 1))
+            print(cur_frame)
 
-                colonies_arr = match_frames(colonies_arr, cur_frame)
+            colonies_arr = match_frames(colonies_arr, cur_frame)
     return colonies_arr if colonies_arr is not None else []
 
 
 def run_on_all_positions():
     all_colonies = list()
     for i in range(20):
-        all_colonies += build_position_colonies( f"tif/pos{i}")
+        all_colonies += build_position_colonies( f"tif/Pos{i}")
     return all_colonies
 
 def get_multi_factor(k,t):
@@ -225,13 +224,13 @@ def plot_regions(im):
 
 
 if __name__ == '__main__':
-    # im = read_image('./img_000000080_YFPFast_000.tif', 1)
-    #
+    im = read_image('./img_000000080_YFPFast_000.tif', 1)
+    plot_regions(im)
     # im2 = read_image('./img_000000080_YFPFast_000.tif', 1)
     # build_position_colonies('tif-test')
-    pkt = get_multi_factor(5, 10)
-
-    for k in range (5):
-        plt.plot(pkt[k])
-    plt.show()
+    # pkt = get_multi_factor(5, 10)
+    #
+    # for k in range (5):
+    #     plt.plot(pkt[k])
+    # plt.show()
 
