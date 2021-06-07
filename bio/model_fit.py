@@ -1,6 +1,7 @@
 from random import choice, gammavariate
 from copy import deepcopy 
 import numpy as np
+from numpy.lib import vectorize
 import scipy.special
 import scipy.integrate as integrate
 import matplotlib.pyplot as plt
@@ -97,28 +98,23 @@ def plot_propb(propb):
 
 if __name__ == "__main__":
     
-    prob =  sim(20, 40, number_of_exp=50000)
-    plot_propb(normalize_propb(deepcopy( prob) ))
+
+    
+    def fitted_for_p(p):
+        prob =  sim(60, 50, p=p, number_of_exp=5000)
+        print(prob.shape)
+        popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))
+        return popt[0]
+        # return [popt, MSR] 
+
+    p_axis = np.linspace( 0.3, 1, 10 )
+    res_p_axis = np.vectorize(fitted_for_p ) (p_axis )
+    plt.plot(p_axis, res_p_axis)
     plt.show()
-    
-    
-    # plt.savefig("./svg/fig2kt.svg")
+        
+    # plt.savefig("./svg/fig5kt-fitted.svg")
+    # plt.clf()
+    # plt.savefig("./svg/fig4kt-sim.svg")
     # plt.clf()
     # _prob = transpose_normalize_propb(prob)
-    # plot_propb(_prob)
-    # plt.savefig("./svg/fig3tk.svg")
-    
-    # X = [f(100, i) for i in range(100)]
-    # for i in range(len(X)):
-    #     X[i] /= sum(X)
-    # for i in range(len(X)):
-    #     X[i] /= sum(X)
-    # X = np.array(X)
-    # plt.plot( X / np.max( X) )
     # plt.show()
-    print(prob.shape)
-    popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))
-    print(popt, MSR)
-
-    plot_propb( values.reshape(prob.shape)  )
-    plt.show()
