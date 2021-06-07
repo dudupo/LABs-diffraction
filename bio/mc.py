@@ -10,10 +10,11 @@ import matplotlib.patches as mpatches
 from skimage import data
 from skimage.filters import threshold_otsu, sobel
 from skimage.segmentation import clear_border, watershed, expand_labels
-
 from skimage.measure import label, regionprops
-from skimage.morphology import closing, square
+from skimage.morphology import closing, square, dilation
 from skimage.color import label2rgb
+import scipy.ndimage as ndimage
+
 
 
 
@@ -37,10 +38,111 @@ def im_disp(im):
 
 
 def make_binary(img):
-    thresh = 1/255
+    thresh = 20/255
+    # img = ndimage.gaussian_filter(img, sigma=2)
     img[img <= thresh ] = 0
     img[img > thresh ] = 1
-    return img
+    return dilation(img, square(7))
+
+
+def get_middle(rect):
+    x, y = rect.xy
+    x += rect._width//2
+    y += rect._height//2
+    return x,y
+
+def compute_dist(rect1, rect2):
+    return (np.sum(\
+        (np.array( get_middle(rect1)) -\
+         np.array( get_middle(rect2)))**2))**0.5
+
+def match_frames(f1, f2):
+    if f1 is None:
+        return [f2]
+    for colony in f1:
+        print(colony)
+        minindex = np.argmin( np.vectorize( \
+            lambda _f2 : compute_dist(colony[-1], _f2)) ( f2 ) )
+        colony.append(f2[minindex])
+    return f1
+
+
+class ColonyRect(mpatches.Rectangle):
+    def __init__(self, maxc, minc, maxr, minr, area):
+        super(ColonyRect, self).__init__((minc, minr), maxc - minc, maxr - minr,
+                           fill=False, edgecolor='red', linewidth=2)
+        self.area = area
+
+
+def get_rect_arr(image):
+    rect_arr = list()
+    # apply threshold
+    thresh = threshold_otsu(image)
+    bw = closing(image > thresh, square(3))
+
+    # remove artifacts connected to image border
+    cleared = clear_border(bw)
+
+    # label image regions
+    label_image = label(cleared, connectivity=2)
+    # to make the background transparent, pass the value of `bg_label`,
+    # and leave `bg_color` as `None` and `kind` as `overlay`
+    image_label_overlay = label2rgb(label_image, image=image, bg_label=0)
+    for region in regionprops(label_image):
+        # take regions with large enough areas
+        if region.area >= 1:
+            # draw rectangle around segmented coins
+            minr, minc, maxr, maxc = region.bbox
+            rect_arr.append(ColonyRect( maxc, minc, maxr, minr, region.area))
+    return rect_arr
+
+def build_position_colonies(_path):
+    _keyword = "YFP"  # "Phasefast"
+    colonies_arr = None
+    for dirpath, dirname, filenams in walk(_path):
+        DIRname = dirpath.split("/")[-1]
+        for _filename in filter(lambda s: ("00.tif" in s) and (_keyword in s), filenams):
+            img_num = int(_filename.split("_")[1])
+            if img_num < 3:
+                __file = "{0}/{1}".format(dirpath, _filename)
+                print(__file)
+                cur_frame = get_rect_arr(read_image(__file, 1))
+                print(cur_frame)
+
+                colonies_arr = match_frames(colonies_arr, cur_frame)
+    return colonies_arr if colonies_arr is not None else []
+
+
+def run_on_all_positions():
+    all_colonies = list()
+    for i in range(20):
+        all_colonies += build_position_colonies( f"tif/pos{i}")
+    return all_colonies
+
+def get_multi_factor(k,t):
+    colonies = run_on_all_positions()
+    print(colonies)
+    pkt = np.zeros((k,t))
+    # print(colonies)
+    for colony in colonies:
+        for j, col_t in enumerate(colony):
+            if j < t:
+                cur_k = col_t.area//colony[0].area
+                if cur_k <= k:
+                    pkt[cur_k][j] += 1
+
+    return pkt
+
+
+
+
+
+
+
+
+
+
+
 
 
 def find_regions(image):
@@ -63,12 +165,15 @@ def find_regions(image):
 
     for region in regionprops(label_image):
         # take regions with large enough areas
-        if region.area >= 100:
+        if region.area >= 200:
             # draw rectangle around segmented coins
             minr, minc, maxr, maxc = region.bbox
             rect = mpatches.Rectangle((minc, minr), maxc - minc, maxr - minr,
                                       fill=False, edgecolor='red', linewidth=2)
+            print(rect)
             ax.add_patch(rect)
+
+
 
     ax.set_axis_off()
     plt.tight_layout()
@@ -109,14 +214,24 @@ def find_regions(image):
 #     fig.tight_layout()
 #     plt.show()
 
+def plot_regions(im):
+    img = make_binary(im)
+    im_disp(im)
+    im_disp(img)
+    find_regions(img)
+
+
+
+
 
 if __name__ == '__main__':
-    im = read_image('./test/img_000000100_YFPFast_000.tif', 1)
-    im = make_binary(im)
-    # im_disp(im)
-    find_regions(im)
+    # im = read_image('./img_000000080_YFPFast_000.tif', 1)
+    #
+    # im2 = read_image('./img_000000080_YFPFast_000.tif', 1)
+    # build_position_colonies('tif-test')
+    pkt = get_multi_factor(5, 10)
 
-
-
-
+    for k in range (5):
+        plt.plot(pkt[k])
+    plt.show()
 
