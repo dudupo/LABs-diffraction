@@ -72,9 +72,12 @@ def estimate_distribute(_shape):
         initiallstate_copy = deepcopy(initiallstate)
         ret = deepcopy(empty_propb)
         print(ret.shape)
+        
+        # hook
         if ret.shape != _shape:
-            ret.reshape( _shape )
-        # print(ret) 
+            ret = np.zeros\
+                ( shape=_shape ).astype(np.float128)
+                
         for k in range(ret.shape[0]):
             for t in range(ret.shape[1]):
                 ret[k][t] = f(k,t, p=p, _dict = initiallstate_copy )
@@ -94,7 +97,7 @@ def plot_propb(propb):
 
 if __name__ == "__main__":
     
-    prob =  sim(10, 20, number_of_exp=500)
+    prob =  sim(20, 40, number_of_exp=500)
     plot_propb(normalize_propb(deepcopy( prob) ))
     plt.show()
     
@@ -115,4 +118,7 @@ if __name__ == "__main__":
     # plt.show()
     print(prob.shape)
     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))
-    print(popt)
+    print(popt, MSR)
+
+    plot_propb( values.reshape(prob.shape)  )
+    plt.show()
