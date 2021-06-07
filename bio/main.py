@@ -12,12 +12,12 @@ def exp():
     x = 1
     t = 0 
     L = []
-    while x < 100:
+    while x < 2*k:
         for _ in range(x):
-            x = choice([x+1 , x ])
-        L.append(deepcopy(x))
+            x = choice([x+1] + [x] * 30)
+        # L.append(deepcopy(x))
         t += 1
-    return L
+    return t
 
 
 
@@ -46,35 +46,31 @@ import numpy as np
 
 
 
-def sim_main():
-    X = [f(100, i) for i in range(100)]
-    # for i in range(len(X)):
-        # X[i] /= sum(X)
-    # for i in range(len(X)):
-        # X[i] /= sum(X)
-    X = np.array(X)
-    # plt.plot( X / np.max( X) )
-    print( sorted(D.items(),  key= lambda x : x[1]) )
+def sim_main(k):
+    # X = [f(100, i) for i in range(100)]
+    # # for i in range(len(X)):
+    #     # X[i] /= sum(X)
+    # # for i in range(len(X)):
+    #     # X[i] /= sum(X)
+    # X = np.array(X)
+    # # plt.plot( X / np.max( X) )
+    # print( sorted(D.items(),  key= lambda x : x[1]) )
 
-    # # result = integrate.quad( X , 0, 4.5)
+    # # # result = integrate.quad( X , 0, 4.5)
+    # # plt.show()
+    # plt.plot(exp())
+    # plt.yscale("log")
     # plt.show()
-    plt.plot(exp())
-    plt.yscale("log")
-    plt.show()
 
 
 
-    # X = np.array([ exp( ) for _ in range(2000)]
-    
-    
-    
-    # plt.scatter( )
+    X = np.array([ exp(k ) for _ in range(30)])
     from numpy import histogram
-    T = histogram( X  , bins=20)
-    print(T)
+    T = histogram( X  , bins=10)
+    # print(T)
     # plt.plot(T[1])
-    plt.scatter( T[1][1:] , T[0]/ np.max(T[0]), s=2) 
-    plt.show()
+    plt.plot( 50*k +  T[1][1:] ,5*i + T[0]) 
+    # plt.show()
 
 
 from os import walk, system
@@ -153,8 +149,27 @@ if __name__ == "__main__":
     _dict = None
     with open(f"{_keyword}.pkl", 'rb') as handle:
         _dict = pickle.load(handle)
+    # print(_dict)
 
     propb = np.zeros((50,250))
+    # probexcpt = np.zeros((50,250))
+
+
+    for _key, dictvec in _dict.items():
+        print("----" + str( _key) + "-----")
+        if len(dictvec) > 0:
+            vec = (np.array( sorted( dictvec, key=lambda x: x[0]) )).T
+            vec[1] /= vec[1][0] 
+
+            # print(vec.T)
+
+            for timetick, mulsize in vec.T:
+                if timetick < 110:
+                    propb[int(mulsize)][int(timetick)] += 1
+    
+    from scipy.signal import find_peaks
+
+
 
     for _key, dictvec in _dict.items():
         print("----" + str( _key) + "-----")
@@ -164,12 +179,16 @@ if __name__ == "__main__":
             # print(vec.T)
 
             for timetick, mulsize in vec.T:
-                propb[int(mulsize)][int(timetick)] += 1
-                print(timetick, mulsize, _key)
+                peaks, _ = find_peaks(  propb[int(mulsize)] )
+                np.diff(peaks)
+                if len(peaks) > 1 :
+                    if abs(timetick - peaks[-1]) < 3:
+                    # if timetick > 2 *  np.average(propb[int(mulsize)]):
+                        print( f" anomaloy :  {_key} , {timetick}, {mulsize}")
 
 
 
-    
+    print(propb[7])
 
     # for i in reversed( range(2, 15) ) :
     #     plt.plot(  50*i + np.arange(250) , 5*i + propb[i] , c=next(gColors) )
