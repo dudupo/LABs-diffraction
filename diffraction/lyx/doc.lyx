@@ -305,9 +305,10 @@ U(x,y,z)=-\frac{ik_{0}}{2\pi z}e^{ik_{0}z}\int_{-\infty}^{\infty}\int_{-\infty}^
 תחת קירוב זה יהיה ניתן להזניח את האיברים הריבועיים באקספוננט, ולקבל את קירוב
  פראונהופר עבור עקיפה בקירוב השדה הרחוק:
 \begin_inset Formula 
-\[
-U(x,y,z)=-\frac{ik_{0}}{2\pi z}e^{ik_{0}(z+\frac{x^{2}+y^{2}}{2z})}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}U(x',y',z=0)\cdot e^{-\frac{ik_{0}}{z}(xx'+yy')}dx'dy'
-\]
+\begin{align*}
+U(x,y,z) & =-\frac{ik_{0}}{2\pi z}e^{ik_{0}(z+\frac{x^{2}+y^{2}}{2z})}\cdot\\
+ & \ \ \cdot\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}U(x',y',z=0)\cdot e^{-\frac{ik_{0}}{z}(xx'+yy')}dx'dy'\\
+\end{align*}
 
 \end_inset
 
@@ -678,9 +679,9 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename C:/home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
 	display false
-	scale 65
+	scale 58
 
 \end_inset
 
@@ -691,19 +692,60 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-מערכת הניסוי עבור סדק יחיד, הנקודה 
-\begin_inset Formula $B$
+ההתאמה הלינאירית בין 
+\begin_inset Quotes eld
 \end_inset
 
- היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
-\begin_inset Formula $A$
+
+\begin_inset Formula $1$
 \end_inset
 
- היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
-\begin_inset Formula $C$
+ חלקי תדר
+\begin_inset Quotes erd
 \end_inset
 
- נמצא מקור הלייזר.
+ ה
+\begin_inset Formula $\sin c$
+\end_inset
+
+ ו 
+\begin_inset Formula $\cos$
+\end_inset
+
+ כפונקציה של 
+\begin_inset Formula $\frac{1}{W}$
+\end_inset
+
+ ) או 
+\begin_inset Formula $\frac{2}{W+d}$
+\end_inset
+
+ במקרה של 
+\begin_inset Formula $\cos$
+\end_inset
+
+ (.
+ ציר 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ מופיעה 
+\begin_inset Formula $\frac{1}{W}$
+\end_inset
+
+ ובציר 
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ את 
+\begin_inset Formula $\frac{1}{\alpha_{W}}\left(\frac{1}{W}\right)$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $\alpha_{W}$
+\end_inset
+
+ הוא התדר.
 \end_layout
 
 \end_inset
@@ -714,6 +756,96 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Paragraph
+תוצאות 
+\end_layout
+
+\begin_layout Standard
+באיורים 
+\begin_inset Formula $3$
+\end_inset
+
+ ו- 
+\begin_inset Formula $4$
+\end_inset
+
+ ניתן לראות את ההתאמות אל מול המדידות, באיור מספר 
+\begin_inset Formula $2$
+\end_inset
+
+ את התאמה הלניארית ל 
+\begin_inset Formula $\alpha_{W}^{-1}$
+\end_inset
+
+ )תדר ה 
+\begin_inset Formula $\sin c$
+\end_inset
+
+ שחולץ מההתאמה( כאשר השיפוע הוא אורך הגל, 
+\begin_inset Formula $\lambda\cdot\left(\frac{1}{W}\right)+\phi$
+\end_inset
+
+.
+ נציין כי ערכי השיפועים אינם תואמים את הערכי הגל של הלייזר האדום ) עבור
+ סדק יחיד התקבל אורך גל של 
+\begin_inset Formula $0.16_{\mu m}$
+\end_inset
+
+ ומחילוץ תדרי ה 
+\begin_inset Formula $\sin c$
+\end_inset
+
+ ו 
+\begin_inset Formula $\cos c$
+\end_inset
+
+ בניסוי השני קיבלנו 
+\begin_inset Formula $0.31_{\mu m}$
+\end_inset
+
+ ו 
+\begin_inset Formula $0.43_{\mu m}$
+\end_inset
+
+ ( כאשר אורך הגל של לייזר אדום הוא 
+\begin_inset Formula $0.6_{\mu m}$
+\end_inset
+
+.
+ יחד עם זאת ערך 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ המוחזר עבור התדר נע בין ערכי 
+\begin_inset Formula $0.1$
+\end_inset
+
+ ל 
+\begin_inset Formula $2$
+\end_inset
+
+ )עבור כל סדק מתקבל ערך אחר בתחום( כלומר, הערך המקסימלי הנתרם ל - 
+\begin_inset Formula $\frac{\sigma}{\alpha\left(W\right)}$
+\end_inset
+
+ הוא 
+\begin_inset Formula $15\%$
+\end_inset
+
+, ובנוסף מאחר ומדידת האורכים במערכת היא גסה )נובע ישירות מקרוב הזוויות הקטנות(
+ לקחנו שגאה של כ 
+\begin_inset Formula $10\%$
+\end_inset
+
+ באורך ולכן ניתן לחסום את השגיאה מלעיל ב 
+\begin_inset Formula $\pm25\%$
+\end_inset
+
+, ואכן לא הצלחנו להגיע לאימות מלא.
+ אבל כן לתוצאה קרובה בסדרי הגודל.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -727,7 +859,7 @@ status open
 \begin_inset Graphics
 	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig2.svg
 	display false
-	scale 65
+	scale 58
 
 \end_inset
 
@@ -738,19 +870,16 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-מערכת הניסוי עבור סדק יחיד, הנקודה 
-\begin_inset Formula $B$
+ההתאמות לתבנית ההתאבכות במערכת סדק יחיד, עבור רוחבים משתנים.
+ בציר 
+\begin_inset Formula $\hat{x}$
 \end_inset
 
- היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
-\begin_inset Formula $A$
+ נתונה הזווית ברדיאנים, בציר 
+\begin_inset Formula $\hat{y}$
 \end_inset
 
- היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
-\begin_inset Formula $C$
-\end_inset
-
- נמצא מקור הלייזר.
+ את עוצמת האור הנמדדת.
 \end_layout
 
 \end_inset
@@ -774,7 +903,7 @@ status open
 \begin_inset Graphics
 	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig3.svg
 	display false
-	scale 65
+	scale 58
 
 \end_inset
 
@@ -785,19 +914,24 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-מערכת הניסוי עבור סדק יחיד, הנקודה 
-\begin_inset Formula $B$
+ההתאמות לתבנית ההתאבכות במערכת שתי סדקים, עבור רוחבים משתנים 
+\begin_inset Formula $W$
 \end_inset
 
- היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
-\begin_inset Formula $A$
+ ומרחק משתנה ביינהם 
+\begin_inset Formula $d$
 \end_inset
 
- היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
-\begin_inset Formula $C$
+.
+ בציר 
+\begin_inset Formula $\hat{x}$
 \end_inset
 
- נמצא מקור הלייזר.
+ נתונה הזווית ברדיאנים, בציר 
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ את עוצמת האור הנמדדת.
 \end_layout
 
 \end_inset
@@ -811,36 +945,33 @@ status open
 \end_layout
 
 \begin_layout Subsection*
-חלק
-\family roman
-\series bold
-\shape up
-\size large
-\emph off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
+נספחים.
  
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\numeric on
-\bar default
-\strikeout default
-\xout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-2
-\numeric off
-.
+\end_layout
+
+\begin_layout Paragraph*
+נסיון לאמת את ניסוי מייכאלסון.
+ 
+\end_layout
+
+\begin_layout Standard
+חלק זה לא הוכנס לדו
+\begin_inset Quotes erd
+\end_inset
+
+ח מאחר וניתוח תצאותיו רחוקות מאוד מהערכים אותם ציפנו להקבל בתאוריה.
+ ולכן חלק זה נכנס כניספח.
+ 
+\end_layout
+
+\begin_layout Standard
+בחלק זה של הניסוי, אנו מעבירים את אחד הגלים דרך תווך המוסיף פאזה מסויימת,
+ במקרה שלנו משטח זכוכית, נטייה בזווית 
+\begin_inset Formula $\theta$
+\end_inset
+
+ של המשטח תאפשר לנו לשלוט במרחק אותו עובר הגל בתוך התווך.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -968,7 +1099,7 @@ status open
 \begin_inset Graphics
 	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig4.svg
 	display false
-	scale 65
+	scale 58
 
 \end_inset
 
@@ -979,19 +1110,28 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-מערכת הניסוי עבור סדק יחיד, הנקודה 
-\begin_inset Formula $B$
+התאמה בין הנורמות 
+\begin_inset Formula $d^{2}\left(\psi_{\theta}-\psi\right)$
 \end_inset
 
- היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
-\begin_inset Formula $A$
+ לבין 
+\begin_inset Formula $tringle\left(\frac{1}{2}\left(\vec{\xi}\cdot\vec{1}\right)\theta\mod2\pi\zeta\right)$
 \end_inset
 
- היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
-\begin_inset Formula $C$
+ בציר 
+\begin_inset Formula $\hat{x}$
 \end_inset
 
- נמצא מקור הלייזר.
+ נמצאת הזווית 
+\begin_inset Formula $\theta$
+\end_inset
+
+ בציר 
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ מוצגת הנורמה.
+ 
 \end_layout
 
 \end_inset
@@ -1053,19 +1193,61 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-מערכת הניסוי עבור סדק יחיד, הנקודה 
-\begin_inset Formula $B$
-\end_inset
-
- היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
-\begin_inset Formula $A$
-\end_inset
-
- היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
-\begin_inset Formula $C$
-\end_inset
-
- נמצא מקור הלייזר.
+דוגמא, ל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+4
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+פריימים שצולמו לאחר הפעלת טרשהולד.
 \end_layout
 
 \end_inset
@@ -1075,6 +1257,25 @@ status open
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+נציין כי, ההתאמה המופיע באיור 
+\begin_inset Formula $5$
+\end_inset
+
+ היא אינה ההצגה האופטימלית המצמצת את השגיאה, זאת מאחר וכל פתרון המוחזר על
+ 
+\begin_inset Formula $scipy$
+\end_inset
+
+ הוא משולש בעל תדר גבוהה בצורה בלתי סבירה, מה שמעיד על כך שכניראה אחת ההנחות
+ לעיל הייתה פשוט לא סבירה.
+ 
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
