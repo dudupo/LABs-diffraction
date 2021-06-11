@@ -89,8 +89,233 @@
 מיכאל כהן ודויד פונרובסקי 
 \end_layout
 
+\begin_layout Paragraph*
+רקע תיאורטי
+\end_layout
+
+\begin_layout Standard
+גל מישורי מונוכרומטי ניתן לתיאור בתור שדה התלוי בזמן ובמרחב 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\psi(\vec{r},t)=Ae^{i(\vec{k}\cdot\vec{r}-\omega t)}=U(\vec{r})e^{-i\omega t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כאשר 
+\begin_inset Formula $\vec{k}=(k_{x},k_{y},k_{z})$
+\end_inset
+
+ ו-
+\begin_inset Formula $\omega=c\sqrt{k_{x}^{2}+k_{y}^{2}+k_{z}^{2}}$
+\end_inset
+
+.
+ עבור גל כזה ניתן לתאר את המרחב כאוסף רציף של מישורים שווי-פאזה.
+ מישורים אלה נקראים חזיתות הגל.
+ 
+\end_layout
+
+\begin_layout Standard
+עצמה של גל מוגדרת להיות
+\begin_inset Formula 
+\[
+I(\vec{r})=|U(\vec{r})|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כאשר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\lang hebrew
+ גלים שונים נפגשים, ניתן לתאר גל יחיד שקול שהוא סכום הגלים, מעקרון הסופרפוזיציה:
+ 
+\begin_inset Formula 
+\[
+\psi(\vec{r},t)=\sum_{j=1}^{n}\psi_{j}(\vec{r},t)=\sum_{j=1}^{n}U_{j}(\vec{r})e^{-\omega_{j}t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+לדוגמה, במקרה שבו 
+\begin_inset Formula $n=2$
+\end_inset
+
+, העוצמה של גל מוגדרת להיות
+\begin_inset Formula 
+\[
+I=I_{1}+I_{2}+2\sqrt{I_{1}I_{2}}cos(\Delta\phi)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר תבנית ההתאבכות נקבעת לפי הפרשי הפאזה של המקורות.
+\end_layout
+
+\begin_layout Standard
+הקירוב הפרקסיאלי - כאשר נניח זוויות קטנות בין הציר האופטי ובין וקטורי הגל,
+ עבור וקטור גל 
+\begin_inset Formula $\vec{k_{0}}=(k_{x},k_{y},k_{z}=\sqrt{k_{0}^{2}-k_{x}^{2}-k_{y}^{2}})$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $|k_{x}|,|k_{y}|<<k_{0}$
+\end_inset
+
+ ולכן נקבל:
+\begin_inset Formula 
+\[
+\sqrt{k_{0}^{2}-k_{x}^{2}-k_{y}^{2}}=k_{0}\sqrt{1-\frac{k_{x}^{2}+k_{y}^{2}}{k_{0}^{2}}}\approx k_{0}-\frac{k_{x}^{2}+k_{y}^{2}}{2k_{0}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כאשר גל פוגע בסריג, אינטגרל פרנל בעזרת הקירוב הפראקסיאלי מתאר את השדה במרחב:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(x,y,z)=-\frac{ik_{0}}{2\pi z}e^{ik_{0}z}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}U(x',y',z=0)\cdot e^{\frac{ik_{0}}{2z}((x-x')^{2}+(y-y')^{2})}dx'dy'
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כאשר 
+\begin_inset Formula $U(x',y',z=0)$
+\end_inset
+
+ מייצג את הביטוי המתקבל מכפל פונקציית הגל ממש לפני המפתח, כפול פונקציית
+ ההעברה של המפתח, המבטאת את המבנה הגיאומטרי של המפתח.
+ בדרך כלל נניח מפתח דו-מימדי ולכן גם פונקציית ההעברה תהיה דו-מימדית.
+ למשל, עבור מפתח ריבועי פונקציית ההעברה היא מכפלה של שני פונקציות 
+\begin_inset Formula $Rect(\cdot)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+אם בנוסף לכך נניח שאנחנו מסתכלים על נקודה רחוקה מאוד 
+\begin_inset Formula $r$
+\end_inset
+
+ עבורה נוכל להשתמש בקירוב השדה הרחוק:
+\begin_inset Formula 
+\[
+|x'_{max}|,|y'_{max}|<<\sqrt{\lambda z}
+\]
+
+\end_inset
+
+ כאשר 
+\begin_inset Formula $|x'_{max}|,|y'_{max}|$
+\end_inset
+
+ מייצגים את ערכי 
+\begin_inset Formula $x,y$
+\end_inset
+
+ המקסימליים במישור המפתח עבורם פונקציית ההעברה אינה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+תחת קירוב זה יהיה ניתן להזניח את האיברים הריבועיים באקספוננט, ולקבל את קירוב
+ פראונהופר עבור עקיפה בקירוב השדה הרחוק:
+\begin_inset Formula 
+\[
+U(x,y,z)=-\frac{ik_{0}}{2\pi z}e^{ik_{0}(z+\frac{x^{2}+y^{2}}{2z})}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}U(x',y',z=0)\cdot e^{-\frac{ik_{0}}{z}(xx'+yy')}dx'dy'
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
-תיאור מערכת הניסוי.
+תיאור מערכת הניסוי
 \end_layout
 
 \begin_layout Standard
@@ -452,7 +677,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
+	filename C:/home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
 	display false
 	scale 65
 
