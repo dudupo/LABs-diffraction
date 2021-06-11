@@ -89,6 +89,40 @@
 מיכאל כהן ודויד פונרובסקי 
 \end_layout
 
+\begin_layout Subsection*
+חלק
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\numeric off
+.
+ 
+\end_layout
+
 \begin_layout Paragraph
 תיאור מערכת הניסוי.
 \end_layout
@@ -446,6 +480,7 @@ status open
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -455,6 +490,368 @@ status open
 	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig1.svg
 	display false
 	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig2.svg
+	display false
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig3.svg
+	display false
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+חלק
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+נסמן ב 
+\begin_inset Formula $g\left(\theta,\vec{x}\right)$
+\end_inset
+
+ את הפאזה אותה צובר הגל בעת מעבר בזכוכית בזווית 
+\begin_inset Formula $\theta$
+\end_inset
+
+ במיקום 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+, ונקבל כי שיכלול הגל המתקבל על המסך הוא 
+\begin_inset Formula $\frac{1}{\sqrt{2}}\left(e^{ig\left(\theta,\vec{x}\right)}+1\right)\psi\left(x\right)$
+\end_inset
+
+ מכאן שהמרחק )בנורמת פורבינוס( לבין הגל המקורי 
+\begin_inset Formula 
+\begin{align*}
+d_{F}\left(\psi_{\theta}-\psi\right) & =\sqrt{\int_{D}|\psi_{\theta}\left(x\right)-\psi\left(x\right)|^{2}}\\
+ & =\sqrt{\int_{D}|\frac{1}{\sqrt{2}}\left(e^{ig\left(\theta,\vec{x}\right)}-1\right)\psi\left(x\right)|^{2}}\\
+ & =\sqrt{\int_{D}\sin\left(\frac{1}{2}g\left(\theta,\vec{x}\right)\right)|\psi\left(x\right)|^{2}}=\\
+ & =\sqrt{\mathcal{F}\left[\sin\left(\frac{1}{2}g\left(\theta,\vec{x}\right)\right)\right]\ast\mathcal{F}\left[|\psi\left(x\right)|^{2}\right]}=\\
+ & =\sqrt{\mathcal{F}\left[\sin\left(\frac{1}{2}g\left(\theta,\vec{x}\right)\right)\right]\ast\mathcal{F}\left[\psi\left(x\right)\right]\ast\mathcal{F}\left[\psi\left(x\right)\right]}
+\end{align*}
+
+\end_inset
+
+כאשר שתי המעברים האחרונים נובעים ישירות ממשפט הקונבלוציה.
+ אנו מניחים כי 
+\begin_inset Formula $\psi\left(x\right)$
+\end_inset
+
+ הוא הפתרון לפיזור מסדק דק כלומר 
+\begin_inset Formula $\psi\left(x\right)\sim sinc\left(wx\right)$
+\end_inset
+
+ ומכאן ש 
+\begin_inset Formula $\mathcal{F}\left[\psi\left(x\right)\right]=rect\left(rx^{\prime}\right)$
+\end_inset
+
+, כאשר 
+\begin_inset Formula $r,w$
+\end_inset
+
+ הם הפרמטרים הפיזים .נזכיר כי קונבלוציה של שתי מלבנים )
+\begin_inset Formula $rects$
+\end_inset
+
+( שווה לפונקציית המשולש.
+ 
+\end_layout
+
+\begin_layout Standard
+נניח כי 
+\begin_inset Formula $g\left(\theta,\vec{x}\right)$
+\end_inset
+
+ הוא אופרטור לניארי ב 
+\begin_inset Formula $\theta$
+\end_inset
+
+ בשדה מודולו 
+\begin_inset Formula $2\pi$
+\end_inset
+
+, מהצורה 
+\begin_inset Formula $g\left(\theta,\vec{x}\right)=\left(\vec{\xi}\cdot\vec{x}\right)\theta\mod2\pi\zeta$
+\end_inset
+
+ )כאשר 
+\begin_inset Formula $\zeta$
+\end_inset
+
+, מייצג את 
+\begin_inset Formula $1$
+\end_inset
+
+ חלקי המחזור( הנחה זאת סבירה עם מקדם השבירה של הזכוכית קטן.
+ במקרה זה, נקבל כי 
+\begin_inset Formula 
+\[
+\mathcal{F}\left[\sin\left(\frac{1}{2}g\left(\theta,\vec{x}\right)\right)\right]\sim\delta\left(|x^{\prime}-\frac{1}{2}\left(\vec{\xi}\cdot\vec{1}\right)\theta|\mod2\pi\zeta\right)
+\]
+
+\end_inset
+
+.
+ נקבל סך הכל כי 
+\begin_inset Formula 
+\[
+d_{F}\left(\psi_{\theta}-\psi\right)=\sqrt{tringle\left(\frac{1}{2}\left(\vec{\xi}\cdot\vec{1}\right)\theta\mod2\pi\zeta\right)}
+\]
+
+\end_inset
+
+כאשר 
+\begin_inset Formula $\xi$
+\end_inset
+
+ הוא פרמטר, המייצג את מקדם השבירה בכל ציר ו 
+\begin_inset Formula $\zeta$
+\end_inset
+
+ הוא פרמטר המייצג את 
+\begin_inset Formula $1$
+\end_inset
+
+ חלקי זמן המחזור.
+ מטעמי פשטות נניח כי מקדם השבירה בשתי הצירים זהה.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/graphs/Fig4.svg
+	display false
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+מערכת הניסוי עבור סדק יחיד, הנקודה 
+\begin_inset Formula $B$
+\end_inset
+
+ היא מיקום החיישן, הנע על מסלול שהוא בקירוב טוב מקביל למסך, הנקודה 
+\begin_inset Formula $A$
+\end_inset
+
+ היא נקודת המעבר של קרן הלייזר בסדק ובנקודה 
+\begin_inset Formula $C$
+\end_inset
+
+ נמצא מקור הלייזר.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/photo/final.out.p1.png
+	display false
+	scale 7
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/photo/final.out.p4.png
+	display false
+	scale 7
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/photo/final.out.p5.png
+	display false
+	scale 7
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/davidponar/workspace/study/LABs-diffraction/diffraction/photo/final.out.p8.png
+	display false
+	scale 7
 
 \end_inset
 
