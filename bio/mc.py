@@ -3,7 +3,9 @@ import cv2 as cv
 import numpy as np
 from imageio import imread, imsave
 from os import walk, system
+from random import randint
 import matplotlib.pyplot as plt
+from numpy.lib.type_check import imag
 from scipy.stats import describe
 from skimage.color import rgb2gray
 import matplotlib.patches as mpatches
@@ -31,13 +33,18 @@ def read_image(path, gray_output):
 
 
 def im_disp(im):
-    plt.imshow(make_binary(im), cmap='gray')
+    plt.imshow(make_binary_plot(im), cmap='gray')
     plt.show()
 
 
-
-
 def make_binary(img):
+    thresh = 20/255
+    img = ndimage.gaussian_filter(img, sigma=2)
+    img[img <= thresh ] = 0
+    img[img > thresh ] = 1
+    return img
+
+def make_binary_plot(img):
     thresh = 20/255
     img = ndimage.gaussian_filter(img, sigma=2)
     img[img <= thresh ] = 0
@@ -57,27 +64,42 @@ def compute_dist(rect1, rect2):
          np.array( get_middle(rect2)))**2))**0.5
 
 def match_frames(f1, f2):
+
+
     if f1 is None:
-        return [f2]
+        print(f"len: ~ , {len(f2)}")
+        return [[_] for _ in f2]
+    print(f"len: {len(f1)} , {len(f2)}")
     for colony in f1:
         minindex = np.argmin( np.vectorize( \
             lambda _f2 : compute_dist(colony[-1], _f2)) ( f2 ) )
+        f2[minindex].id = colony[0].id
         colony.append(f2[minindex])
     return f1
 
 
 class ColonyRect(mpatches.Rectangle):
-    def __init__(self, maxc, minc, maxr, minr, area):
+    def __init__(self, maxc, minc, maxr, minr, pix_num):
         super(ColonyRect, self).__init__((minc, minr), maxc - minc, maxr - minr,
-                           fill=False, edgecolor='red', linewidth=2)
-        self.area = area
+                           fill=False, edgecolor='red', linewidth=0.5)
+        self.pix_num = pix_num
+        self.id = randint(1,200) 
 
+
+def plotColonyTrace(ax, rects, _matrix):
+    # plt.image_show( inital_iamge)
+    for rect in rects:
+        rect.plot(ax, _matrix)
 
 def get_rect_arr(image):
+    image = make_binary(image)
     rect_arr = list()
     # apply threshold
     thresh = threshold_otsu(image)
     bw = closing(image > thresh, square(3))
+
+    # plt.imshow(bw)
+    # plt.show()
 
     # remove artifacts connected to image border
     cleared = clear_border(bw)
@@ -89,54 +111,61 @@ def get_rect_arr(image):
     image_label_overlay = label2rgb(label_image, image=image, bg_label=0)
     for region in regionprops(label_image):
         # take regions with large enough areas
-        if region.area >= 1:
+        if region.convex_area >= 10:
             # draw rectangle around segmented coins
             minr, minc, maxr, maxc = region.bbox
-            rect_arr.append(ColonyRect( maxc, minc, maxr, minr, region.area))
+            pix_num = np.sum(image[minr:maxr, minc:maxc])
+            rect_arr.append(ColonyRect( maxc, minc, maxr,
+             minr, region.convex_area ))
     return rect_arr
 
-def build_position_colonies(_path):
+def build_position_colonies(_path, first_frame = 9, t=32):
     _keyword = "YFP"  # "Phasefast"
     colonies_arr = None
+    i=0
+    j=0
     for dirpath, dirname, filenams in walk(_path):
         DIRname = dirpath.split("/")[-1]
-        for _filename in filter(lambda s: ("00.tif" in s) and (_keyword in s), filenams):
+        print(i)
+        i += 1
+        for _filename in sorted( filter(lambda s: ("00.tif" in s) and (_keyword in s), filenams) ):
+            j += 1
+            if j > t:
+                break
             img_num = int(_filename.split("_")[1])
             __file = "{0}/{1}".format(dirpath, _filename)
-            print(__file)
-            cur_frame = get_rect_arr(read_image(__file, 1))
-
-            colonies_arr = match_frames(colonies_arr, cur_frame)
+            if first_frame < img_num < t:
+                print(__file)
+                cur_frame = get_rect_arr(read_image(__file, 1))
+                colonies_arr = match_frames(colonies_arr, cur_frame)
+                
     return colonies_arr if colonies_arr is not None else []
 
 
-def run_on_all_positions():
+def run_on_all_positions(start_time,  final_time):
     all_colonies = list()
     for i in range(20):
-        all_colonies += build_position_colonies( f"tif/Pos{i}")
+        all_colonies += build_position_colonies( f"tif/Pos{i}", start_time, final_time)
     return all_colonies
 
-def get_multi_factor(k,t):
-    colonies = run_on_all_positions()
-    pkt = np.zeros((k,t))
+
+
+def get_multi_factor(k, start_time,  final_time=32):
+    colonies = run_on_all_positions(start_time,  final_time)
+    pkt = None
+    t = final_time - start_time
+    pkt = np.zeros((k, t))
     for colony in colonies:
         for j, col_t in enumerate(colony):
             if j < t:
-                cur_k = col_t.area//colony[0].area
+                cur_k = int(col_t.pix_num//colony[0].pix_num)
                 if cur_k <= k:
-                    pkt[cur_k][j] += 1
-
+                    pkt[cur_k-1][j] += 1
+                else:
+                    pkt = np.r_[pkt, np.zeros((cur_k-k, t))]
+                    k = cur_k
+                    pkt[cur_k-1][j] += 1
     return pkt
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -209,7 +238,7 @@ def find_regions(image):
 #     plt.show()
 
 def plot_regions(im):
-    img = make_binary(im)
+    img = make_binary_plot(im)
     im_disp(im)
     im_disp(img)
     find_regions(img)
@@ -219,13 +248,15 @@ def plot_regions(im):
 
 
 if __name__ == '__main__':
-    im = read_image('./img_000000080_YFPFast_000.tif', 1)
-    plot_regions(im)
+    # im = read_image('./img_000000080_YFPFast_000.tif', 1)
+    # plot_regions(im)
     # im2 = read_image('./img_000000080_YFPFast_000.tif', 1)
     # build_position_colonies('tif-test')
-    # pkt = get_multi_factor(5, 10)
+    pkt = get_multi_factor(10, 10, 40)
+    print(pkt)
     #
     # for k in range (5):
     #     plt.plot(pkt[k])
     # plt.show()
+    # plot_colonies_graph()
 
