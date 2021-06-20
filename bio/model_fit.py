@@ -21,7 +21,8 @@ from random import random
 initiallstate =  { (0,0) : 0 , (1,0) : 1 , (1,1) : 1 }
 
 def exp(k, p, initx=1):
-    x = initx
+    initx = initx * int((random()+1) * 1.8)
+    x =  initx
     L = [x]
     while x < initx*k:
         for _ in range(x):
@@ -44,7 +45,7 @@ def transpose_normalize_propb(propb):
     return ret
 
 
-def sim(max_mul_size, max_time, number_of_exp=5000, p =0.6 ):
+def sim(max_mul_size, max_time, number_of_exp=50000, p =0.125 ):
     empty_propb = np.zeros( shape=(max_mul_size*2, max_time+10) )
     print(empty_propb.shape)
     L = [ ]
@@ -53,7 +54,12 @@ def sim(max_mul_size, max_time, number_of_exp=5000, p =0.6 ):
 
     for vec in L:
         for t,k in enumerate(vec):
-            empty_propb[k][t] += 1
+            if k < max_mul_size and t < max_time:
+                empty_propb[k][t] += 1
+            else:
+                if k < max_mul_size:
+                    empty_propb = np.r_[empty_propb, np.zeros((k - empty_propb.shape[0] , t))]
+                    empty_propb[k][t] += 1
     return empty_propb
 
 def f(k , t, p=0.125, N =10, z = 10, _dict =D):
@@ -96,9 +102,14 @@ def model_fit( propb_mes ):
     # popt, (pcov, (_range, values)) , MSR  =
     return  ft.g_extract_coef( empty_propb, deepcopy(propb_mes).flatten(), estimate_distribute(empty_propb.shape) , p0=[0.125, 10, 10] )
 
-def plot_propb(propb):
-    for i in reversed( range(1,len(propb), 2) ):
-        plt.plot(  i + np.arange(propb.shape[-1]) , 0.1*i+  propb[i] , c=next(gColors) )
+def plot_propb(propb, single = False, k=2):
+    if not single:
+        for i in reversed( range(1,len(propb), 2) ):
+            plt.plot(  i + np.arange(propb.shape[-1]) , 0.1*i+  propb[i] , c=next(gColors) )
+    else:
+        plt.plot( np.arange(propb.shape[-1]),  propb[k] , c=next(gColors) )
+
+
     # plt.xlabel(r"time ticks")
     # plt.ylabel(r"$ \sum{ \frac{\psi_i}{\psi_0 } } \ge k  $")
 
@@ -107,10 +118,9 @@ import pickle
 from datetime import datetime
 
 def picklize():
-    for (t,k) in [ (70, 40), (70, 80), (70 , 100)]:
-        prob = get_multi_factor( k, 2, t )
-        with open(f"prob_test-{datetime.now()}.pkl", 'wb') as handle:
-            pickle.dump(prob, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    prob = get_multi_factor( 200, 0, 100 )
+    with open(f"colonys-prob_test-{datetime.now()}.pkl", 'wb') as handle:
+        pickle.dump(prob, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 def plot_mean_func_of_time(propb):
     propb = propb.T
@@ -124,23 +134,29 @@ def plot_mean_func_of_time(propb):
 
 if __name__ == "__main__":
     
-    # picklize()
-    # exit(0)
+    picklize()
+    exit(0)
     #     plot_propb ( deepcopy( prob ) )
 # 
 
     # prob = pickle.load( open( "prob_test-2021-06-07 20:34:17.759904.pkl" , "rb"))
     # prob = pickle.load( open("prob_test-2021-06-12 15:35:52.515836.pkl", "rb"))
-    # prob = pickle.load( open("prob_test-2021-06-12 16:05:21.825747.pkl", "rb"))
     # prob = pickle.load( open("prob_test-2021-06-12 14:19:33.846149.pkl", "rb"))
 
-    prob = pickle.load( open("prob_test-2021-06-12 16:41:23.299589.pkl", "rb"))
+    prob = pickle.load( open("prob_test-2021-06-12 16:05:21.825747.pkl", "rb"))
+    # prob = pickle.load( open("prob_test-2021-06-12 16:41:23.299589.pkl", "rb"))
+    simprob = sim( 20, 100, p = 0.125, number_of_exp=5000  )
     # # plot_propb ( deepcopy( prob )) 
 
-    # plot_propb ( normalize_propb(deepcopy( prob[:180] )) )
+    # plot_propb (  simprob , single=True, k=3 )
+
+    plot_propb (  normalize_propb(deepcopy(simprob)) , single=True, k=2 )
+    plot_propb (  normalize_propb(deepcopy(prob)) , single=True, k=2 )
+
     # plot_propb ( normalize_propb(deepcopy( prob ) ))
-    # plt.show()
-    
+    plt.show()
+
+    exit(0)
 
     # plt.show()
     # def fitted_for_p(p):

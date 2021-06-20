@@ -75,13 +75,12 @@ def sim_main(k):
 
 from os import walk, system
 
-def contrast():
-    _path = "./mgyi/mgyi_1"
+def contrast( _path = "./mgyi/mgyi_1"):
     for dirpath, dirname, filenams in walk(_path): 
         for filename in filter( lambda s : "tif" in s , filenams):   
             print(filename)
             DIRname = dirpath.split("/")[-1]
-            system( f"echo y | sh ./impr.sh {dirpath}/{filename} ./tif/{DIRname}/{filename}")
+            system( f"echo y | sh ./impr.sh {dirpath}/{filename} ./tif2/{DIRname}/{filename}")
 
 import cv2 
 def loadf(_path):
@@ -144,6 +143,12 @@ from skimage.measure import regionprops
 
 
 if __name__ == "__main__":
+
+
+    contrast( _path = "./mgyib_3/" )
+
+    exit(0)
+
     _keyword = "YFP"
 
     _dict = None

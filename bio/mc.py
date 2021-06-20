@@ -64,8 +64,6 @@ def compute_dist(rect1, rect2):
          np.array( get_middle(rect2)))**2))**0.5
 
 def match_frames(f1, f2):
-
-
     if f1 is None:
         print(f"len: ~ , {len(f2)}")
         return [[_] for _ in f2]
@@ -79,11 +77,12 @@ def match_frames(f1, f2):
 
 
 class ColonyRect(mpatches.Rectangle):
-    def __init__(self, maxc, minc, maxr, minr, pix_num):
+    def __init__(self, maxc, minc, maxr, minr, pix_num, time):
         super(ColonyRect, self).__init__((minc, minr), maxc - minc, maxr - minr,
                            fill=False, edgecolor='red', linewidth=0.5)
         self.pix_num = pix_num
         self.id = randint(1,200) 
+        self.time = time
 
 
 def plotColonyTrace(ax, rects, _matrix):
@@ -91,7 +90,7 @@ def plotColonyTrace(ax, rects, _matrix):
     for rect in rects:
         rect.plot(ax, _matrix)
 
-def get_rect_arr(image):
+def get_rect_arr(image, time):
     image = make_binary(image)
     rect_arr = list()
     # apply threshold
@@ -116,7 +115,7 @@ def get_rect_arr(image):
             minr, minc, maxr, maxc = region.bbox
             pix_num = np.sum(image[minr:maxr, minc:maxc])
             rect_arr.append(ColonyRect( maxc, minc, maxr,
-             minr, region.convex_area ))
+             minr, region.convex_area, time ))
     return rect_arr
 
 def build_position_colonies(_path, first_frame = 9, t=32):
@@ -136,7 +135,7 @@ def build_position_colonies(_path, first_frame = 9, t=32):
             __file = "{0}/{1}".format(dirpath, _filename)
             if first_frame < img_num < t:
                 print(__file)
-                cur_frame = get_rect_arr(read_image(__file, 1))
+                cur_frame = get_rect_arr(read_image(__file, 1), img_num)
                 colonies_arr = match_frames(colonies_arr, cur_frame)
                 
     return colonies_arr if colonies_arr is not None else []
@@ -144,14 +143,18 @@ def build_position_colonies(_path, first_frame = 9, t=32):
 
 def run_on_all_positions(start_time,  final_time):
     all_colonies = list()
-    for i in range(20):
-        all_colonies += build_position_colonies( f"tif/Pos{i}", start_time, final_time)
+    for j in ["","2"]:
+        for i in range(20):
+            all_colonies += build_position_colonies( f"tif{j}/Pos{i}", start_time, final_time)
     return all_colonies
 
 
 
 def get_multi_factor(k, start_time,  final_time=32):
     colonies = run_on_all_positions(start_time,  final_time)
+    
+    return colonies
+    
     pkt = None
     t = final_time - start_time
     pkt = np.zeros((k, t))
