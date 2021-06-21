@@ -16,15 +16,15 @@ def exp(k, p, initx=1):
 		L.append( x / initx )        
 	return np.array(L)
 
-def sim(max_mul_size, max_time, number_of_exp=200, p =0.125 ):
+def sim(max_mul_size, max_time, number_of_exp=300, p =0.125 ):
 	L = [ ]
 	for _ in range(number_of_exp):
 		L.append( exp(max_mul_size, p, 1) )
-	return histogram_calc( L, 10, max_time, max_mul_size )
+	return histogram_calc( L, 1, max_time, max_mul_size )
 
 def sim_inital_time(colony_vec, p , max_mul_size , max_time ):
 	L = [ exp(max_mul_size, p, colony_vec[0].pix_num ) for colony in colony_vec ] 
-	return histogram_calc( L, 10, max_time, max_mul_size )
+	return histogram_calc( L, 1, max_time, max_mul_size )
 		
 
 
