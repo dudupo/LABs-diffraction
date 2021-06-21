@@ -9,13 +9,13 @@ import scipy.integrate as integrate
 import matplotlib.pyplot as plt
 import sys, os
 sys.path.append(os.path.realpath(".."))
-from lib import fit as ft
-from lib.exp import Exp, FittedObj, gencolor, glabels, plotlabels, gColors, putlabel
-from copy import deepcopy
-
-from bio.mc import get_multi_factor
-from bio.sim import sim, exp
-from bio.utility import histogram_calc, convert_colonys_to_ktlist
+# from lib import fit as ft
+# from lib.exp import Exp, FittedObj, gencolor, glabels, plotlabels, gColors, putlabel
+# from copy import deepcopy
+#
+# from bio.mc import get_multi_factor
+# from bio.sim import sim, exp
+# from bio.utility import histogram_calc, convert_colonys_to_ktlist
 import pickle
 from datetime import datetime
 
@@ -146,13 +146,27 @@ def datavsmodel( _file ):
     plot_propb( values.reshape( prob.shape ) )
     plt.show()
 
+def colony_k(colonies, i, plot=False):
+    colony = colonies[i]
+    col0 = colony[0].pix_num
+    k_arr = []
+    for j, col_t in enumerate(colony):
+        k = int(col_t.pix_num/col0 + 0.5)
+        k_arr.append(k)
+    if plot:
+        plt.plot(k_arr)
+        # plt.show()
+    return k_arr
+
+
+
 
 if __name__ == "__main__":
     
 
     def get_multi_factor_pckl(t, col_idx=1):
         k = 1
-        colonies = pickle.load( open("colonys-prob_test-2021-06-19 19:17:09.429712.pkl", "rb"))
+        colonies = pickle.load( open("colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
         pkt = np.zeros((k, t))
         col_to_plot = []
         col_0 = 0
@@ -169,7 +183,7 @@ if __name__ == "__main__":
                     start_idx = j
                 if j < t and found:
                     if i == col_idx:
-                        col_to_plot.append(col_t.pix_num/ colony[0].pi)
+                        col_to_plot.append(col_t.pix_num/ colony[0].pix_num)
                     cur_k = int(col_t.pix_num // colony_zero)
                     if cur_k <= k:
                         pkt[cur_k - 1][j - start_idx] += 1
@@ -187,10 +201,23 @@ if __name__ == "__main__":
         return pkt
 
 
+<<<<<<< HEAD
     colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
     pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 1, 100, 80)
     simvsdata(pkt)
+=======
+    # picklize()
+    colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
+    for i in range(10):
+        colony_k(colonies, i, True)
+    plt.show()
+>>>>>>> f19c179e641fd4a7b0afa0f8310e1788d7c4eb81
     exit(0)
+
+    # colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-19_19-17-09.429712.pkl", "rb"))[:120]
+    # pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 10, 100, 60)
+    # simvsdata(pkt)
+    # exit(0)
 
     # pkt = get_multi_factor_pckl( 50 , col_idx=4)
 

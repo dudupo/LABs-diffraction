@@ -11,7 +11,7 @@ from skimage.color import rgb2gray
 import matplotlib.patches as mpatches
 from skimage import data
 from skimage.filters import threshold_otsu, sobel
-from skimage.segmentation import clear_border, watershed, expand_labels
+# from skimage.segmentation import clear_border, watershed, expand_labels
 from skimage.measure import label, regionprops
 from skimage.morphology import closing, square, dilation
 from skimage.color import label2rgb
