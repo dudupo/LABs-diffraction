@@ -39,7 +39,7 @@ def colony_k(colonies, i, plot=False):
         k = int((col_t.pix_num/col0) + 0.5)
         if j != 0:
             mult = k / k_arr[j-1]
-            if mult < 1 or mult > 2:
+            if mult != 2:
                 bad = True
                 break
         else:
