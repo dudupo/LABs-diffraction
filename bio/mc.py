@@ -143,8 +143,8 @@ def build_position_colonies(_path, first_frame = 9, t=32):
 
 def run_on_all_positions(start_time,  final_time):
     all_colonies = list()
-    for j in ["","2"]:
-        for i in range(20):
+    for j in ["3"]:
+        for i in range(27):
             all_colonies += build_position_colonies( f"tif{j}/Pos{i}", start_time, final_time)
     return all_colonies
 

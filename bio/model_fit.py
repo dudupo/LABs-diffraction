@@ -1,6 +1,7 @@
 
 from random import choice, gammavariate
-from copy import deepcopy 
+from copy import deepcopy
+from re import S 
 import numpy as np
 from numpy.lib import vectorize
 import scipy.special
@@ -9,26 +10,20 @@ import matplotlib.pyplot as plt
 import sys, os
 sys.path.append(os.path.realpath(".."))
 from lib import fit as ft
-from lib.exp import Exp, FittedObj, glabels, plotlabels, gColors, putlabel
+from lib.exp import Exp, FittedObj, gencolor, glabels, plotlabels, gColors, putlabel
 from copy import deepcopy
 
 from bio.mc import get_multi_factor
+from bio.sim import sim, exp
+from bio.utility import histogram_calc, convert_colonys_to_ktlist
+import pickle
+from datetime import datetime
 
 p=0.5
 D = { (0,0) : 0 , (1,0) : p , (1,1) : 1-p }
 
 from random import random
 initiallstate =  { (0,0) : 0 , (1,0) : 1 , (1,1) : 1 }
-
-def exp(k, p, initx=1):
-    #initx = initx * int((random()+1) * 1.8)
-    x =  initx
-    L = [x]
-    while x < initx*k:
-        for _ in range(x):
-            x = x+1 if random() < p else x 
-        L.append(int((x / initx) + 0.5) )        
-    return np.array(L)
 
 def normalize_propb(propb):
     for k in range(propb.shape[0]):
@@ -44,31 +39,9 @@ def transpose_normalize_propb(propb):
             ret[t] = ret[t].astype(np.float128) / np.sum(ret[t]) 
     return ret
 
-
-def sim(max_mul_size, max_time, number_of_exp=50000, p =0.125 ):
-    empty_propb = np.zeros( (1, max_time))
-    print(empty_propb.shape)
-    L = [ ]
-    for _ in range(number_of_exp):
-        L.append( exp(max_mul_size, p, 1) )
-
-    for vec in L:
-        for t,k in enumerate(vec):
-            if k < empty_propb.shape[0] and t < max_time:
-                empty_propb[k-1][t] += 1
-            else:
-                if k > empty_propb.shape[0]:
-                    print(k , max_mul_size, empty_propb.shape[0])
-                    empty_propb = np.r_[empty_propb, np.zeros((k - empty_propb.shape[0] , max_time))]
-                    empty_propb[k-1][t] += 1
-    return empty_propb
-
 def f(k , t, p=0.125, N =10, z = 10, _dict =D):
-    # # q = int(np.log2(k+1))
-    # return  N* scipy.special.binom( k , (t+z)) *  p**(t+z) *\
-    #              (1-p)**( k - (t+z) ) 
   
-    if (t == 0 and k > 0) or (t< 0) or (k<0) :   
+    if (t == 0 and k > 0) or (t< 0) or (k<0):   
         return 0
     if (k,t) in _dict:
         return _dict[(k,t)]
@@ -87,7 +60,6 @@ def estimate_distribute(_shape):
         ret = deepcopy(empty_propb)
 
         print ( f" value of p : {p}")        
-        
         hook = False
         
         # hook
@@ -99,19 +71,21 @@ def estimate_distribute(_shape):
         for k in range(ret.shape[0]):
             for t in range(ret.shape[1]):
                 ret[k][t] = f(k,t, p=p, N=N,z=z, _dict = initiallstate_copy )
-        return normalize_propb(ret).flatten() # mean_func_of_time(normalize_propb(ret)) if not  hook else  normalize_propb(ret).flatten()
+        return normalize_propb(ret).flatten() 
     return _estimate_distribute
 
 def model_fit( propb_mes ):
     empty_propb = np.zeros( shape=propb_mes.shape ).astype(np.float128)
-    # popt, (pcov, (_range, values)) , MSR  =
-#    return  ft.g_extract_coef( empty_propb, mean_func_of_time(propb_mes), estimate_distribute(empty_propb.shape) , p0=[0.14, 10, 10] )
-    return  ft.g_extract_coef( empty_propb, propb_mes.flatten(), estimate_distribute(empty_propb.shape) , p0=[0.14, 10, 10] )
+    return  ft.g_extract_coef( empty_propb, propb_mes.flatten(),
+                estimate_distribute(empty_propb.shape) , p0=[0.14, 10, 10] )
 
-def plot_propb(propb, single = False, k=2):
+def plot_propb(propb, single = False, k=2, scat =False):
     if not single:
         for i in reversed( range(1,len(propb), 2) ):
-            plt.plot(  i + np.arange(propb.shape[-1]) , 0.1*i+  propb[i] , c=next(gColors) )
+            if not scat:
+                plt.plot(  i + np.arange(propb.shape[-1]) , 0.1*i+  propb[i] , c=next(gColors) )
+            else:
+                plt.scatter(  i + np.arange(propb.shape[-1]) , 0.1*i+  propb[i] , c=next(gColors), s=0.1 )
     else:
         plt.plot( np.arange(propb.shape[-1]),  propb[k] , c=next(gColors) )
 
@@ -120,9 +94,6 @@ def plot_propb(propb, single = False, k=2):
     # plt.ylabel(r"$ \sum{ \frac{\psi_i}{\psi_0 } } \ge k  $")
 
 
-import pickle
-from datetime import datetime
-
 def picklize():
     prob = get_multi_factor( 200, 0, 100 )
     with open(f"colonys-prob_test-{datetime.now()}.pkl", 'wb') as handle:
@@ -130,7 +101,6 @@ def picklize():
 
 
 def mean_func_of_time(propb):
-    # graph = np.arange(len(propb)) *  np.array(list(map( lambda x : np.average(x), propb)))
     propb = deepcopy(propb)
     At = np.zeros( propb.shape[-1] )
     for j, vec in enumerate( propb ):
@@ -139,26 +109,35 @@ def mean_func_of_time(propb):
 
 def plot_mean_func_of_time(propb):
     propb = propb.T
-    # graph = np.arange(len(propb)) *  np.array(list(map( lambda x : np.average(x), propb)))
     At = np.zeros( propb.shape[-1] )
     for j, vec in enumerate( propb ):
         At += vec * j 
     plt.scatter(  np.arange( len(At[2:] )) , At[2:] )
-    # plt.yscale("log")
     plt.show()
 
 def simvsmodel( ):
     simpkt = sim( 60, 100 )[:60]
-    plot_propb (  normalize_propb(deepcopy(simpkt)) ) #, single=True, k=2 )
+    plot_propb (  normalize_propb(deepcopy(simpkt)) ) 
     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( simpkt)))
     plot_propb( values.reshape( simpkt.shape ) )
     plt.show()
 
-def simvsdata( _file ):
-    simpkt = sim( 60, 100 )[:60]
-    plot_propb (  normalize_propb(deepcopy(simpkt)) ) #, single=True, k=2 )
-    prob = pickle.load( open(_file, "rb"))[:60] 
-    plot_propb ( normalize_propb(deepcopy(prob)))
+def simvsdata( prob ):
+
+
+    simpkt = normalize_propb(sim( 60, 100 ))[:60*10:10]
+    
+    print(simpkt.shape)
+    
+    
+
+    r = next(gColors)
+    plot_propb (  simpkt  )
+    t = next(gColors)
+    while t != r :
+        t = next(gColors)
+
+    plot_propb ( normalize_propb(prob[:60*10])[::10] )
     plt.show()
 
 def datavsmodel( _file ): 
@@ -167,6 +146,7 @@ def datavsmodel( _file ):
     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))
     plot_propb( values.reshape( prob.shape ) )
     plt.show()
+
 
 if __name__ == "__main__":
     
@@ -207,22 +187,31 @@ if __name__ == "__main__":
             print("single colony plot failed, try different colony")
         return pkt
 
+
+    # picklize()
+    # exit(0)
+
+    colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-19_19-17-09.429712.pkl", "rb"))[:120]
+    pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 10, 100, 60)
+    simvsdata(pkt)
+    exit(0)
+
     # pkt = get_multi_factor_pckl( 50 , col_idx=4)
 
     # simvsmodel( )
     # simvsdata("prob_test-2021-06-12 16:41:23.299589.pkl")
     # datavsmodel("prob_test-2021-06-12 16:41:23.299589.pkl" )
     # plot_mean_func_of_time()
-    # picklize()
-    # exit(0)
     #     plot_propb ( deepcopy( prob ) )
 # 
 
     # prob = pickle.load( open( "prob_test-2021-06-07 20:34:17.759904.pkl" , "rb"))
     # prob = pickle.load( open("prob_test-2021-06-12 15:35:52.515836.pkl", "rb"))
     # prob = pickle.load( open("prob_test-2021-06-12 14:19:33.846149.pkl", "rb"))
+    
 
-    prob = pickle.load( open("prob_test-2021-06-12 16:05:21.825747.pkl", "rb"))
+
+    prob = pickle.load( open("./pkl/prob_test-2021-06-12 16:05:21.825747.pkl".replace(":", "-").replace(" ", "_"), "rb"))
     # prob = pickle.load( open("prob_test-2021-06-12 16:41:23.299589.pkl", "rb"))
     # prob = prob[20:,15:40]
 
