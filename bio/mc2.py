@@ -88,6 +88,23 @@ def get_multi_factor_pckl(t, col_idx=1):
     return pkt
 
 
+def get_multi_factor(colonies, start_time=0,  final_time=80):
+    k=1
+    t = final_time - start_time
+    pkt = np.zeros((k, t))
+    for colony in colonies:
+        for j, col_t in enumerate(colony):
+            if j < t:
+                cur_k = int((col_t.pix_num/colony[0].pix_num) + 0.5)
+                if cur_k <= k:
+                    pkt[cur_k-1][j] += 1
+                else:
+                    pkt = np.r_[pkt, np.zeros((cur_k-k, t))]
+                    k = cur_k
+                    pkt[cur_k-1][j] += 1
+    return pkt
+
+
 
 def calc_avg_t0_size(colonies):
     outliers = 0
@@ -113,11 +130,11 @@ if __name__ == '__main__':
     good_colonies_k = []
     good_colonies = []
     for i in range(len(colonies)):
-        col, good = colony_k(colonies, i, True)
-        if good:
+        col, bad = colony_k(colonies, i, True)
+        if not bad:
             good_colonies_k.append(col)
             good_colonies.append(colonies[i])
 
     plt.show()
-    print(calc_avg_t0_size(good_colonies))
+    # print(calc_avg_t0_size(good_colonies))
     exit(0)
