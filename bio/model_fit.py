@@ -125,19 +125,18 @@ def simvsmodel( ):
 def simvsdata( prob ):
 
 
-    simpkt = normalize_propb(sim( 60, 100 ))[:60*10:10]
+    simpkt = normalize_propb(sim( 60, 100 ))[:80*1]
     
     print(simpkt.shape)
-    
-    
-
+        
     r = next(gColors)
     plot_propb (  simpkt  )
+    
     t = next(gColors)
     while t != r :
         t = next(gColors)
 
-    plot_propb ( normalize_propb(prob[:60*10])[::10] )
+    plot_propb ( normalize_propb(prob[:80*1])[:,40:] )
     plt.show()
 
 def datavsmodel( _file ): 
@@ -202,11 +201,17 @@ if __name__ == "__main__":
         return pkt
 
 
+<<<<<<< HEAD
+    colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
+    pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 1, 100, 80)
+    simvsdata(pkt)
+=======
     # picklize()
     colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
     for i in range(10):
         colony_k(colonies, i, True)
     plt.show()
+>>>>>>> f19c179e641fd4a7b0afa0f8310e1788d7c4eb81
     exit(0)
 
     # colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-19_19-17-09.429712.pkl", "rb"))[:120]
