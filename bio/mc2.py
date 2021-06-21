@@ -136,5 +136,5 @@ if __name__ == '__main__':
             good_colonies.append(colonies[i])
 
     plt.show()
-    print(calc_avg_t0_size(good_colonies))
+    # print(calc_avg_t0_size(good_colonies))
     exit(0)
