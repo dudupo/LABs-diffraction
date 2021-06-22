@@ -9,13 +9,13 @@ import scipy.integrate as integrate
 import matplotlib.pyplot as plt
 import sys, os
 sys.path.append(os.path.realpath(".."))
-# from lib import fit as ft
-# from lib.exp import Exp, FittedObj, gencolor, glabels, plotlabels, gColors, putlabel
-# from copy import deepcopy
-#
-# from bio.mc import get_multi_factor
-# from bio.sim import sim, exp
-# from bio.utility import histogram_calc, convert_colonys_to_ktlist
+from lib import fit as ft
+from lib.exp import Exp, FittedObj, gencolor, glabels, plotlabels, gColors, putlabel
+from copy import deepcopy
+
+from bio.mc import get_multi_factor
+from bio.sim import sim, exp
+from bio.utility import histogram_calc, convert_colonys_to_ktlist
 import pickle
 from datetime import datetime
 
@@ -131,7 +131,6 @@ def simvsdata( prob ):
         
     r = next(gColors)
     plot_propb (  simpkt  )
-    
     t = next(gColors)
     while t != r :
         t = next(gColors)
@@ -139,11 +138,19 @@ def simvsdata( prob ):
     plot_propb ( normalize_propb(prob[:80*1])[:,40:] )
     plt.show()
 
-def datavsmodel( _file ): 
-    prob = pickle.load( open(_file, "rb"))[:20, 15:40] 
-    plot_propb ( normalize_propb(deepcopy(prob)))
-    popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))
+def datavsmodel( prob ):
+    prob = normalize_propb(prob[:80*1])[:,40:] 
+    popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))    
+    
+    r = next(gColors)
+    plot_propb( prob )
+
+    t = next(gColors)
+    while t != r :
+        t = next(gColors)
+    
     plot_propb( values.reshape( prob.shape ) )
+    
     plt.show()
 
 def colony_k(colonies, i, plot=False):
@@ -204,17 +211,18 @@ if __name__ == "__main__":
         return pkt
 
 
-<<<<<<< HEAD
     colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
     pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 1, 100, 80)
-    simvsdata(pkt)
-=======
+    # simvsdata(pkt)
+    datavsmodel(pkt)
+
+    exit(0)
+
     # picklize()
     colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
     for i in range(10):
         colony_k(colonies, i, True)
     plt.show()
->>>>>>> f19c179e641fd4a7b0afa0f8310e1788d7c4eb81
     exit(0)
 
     # colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-19_19-17-09.429712.pkl", "rb"))[:120]
