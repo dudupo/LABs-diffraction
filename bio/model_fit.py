@@ -135,7 +135,7 @@ def simvsdata( prob ):
     while t != r :
         t = next(gColors)
 
-    plot_propb ( normalize_propb(prob[:80*1])[:,40:] )
+    plot_propb ( normalize_propb(prob[:80*1]) )
     plt.show()
 
 def datavsmodel( prob ):
@@ -170,7 +170,6 @@ def colony_k(colonies, i, plot=False):
 
 if __name__ == "__main__":
     
-
     def get_multi_factor_pckl(t, col_idx=1):
         k = 1
         colonies = pickle.load( open("colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
@@ -210,8 +209,8 @@ if __name__ == "__main__":
 
     colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
     pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 1, 100, 80)
-    # simvsdata(pkt)
-    datavsmodel(pkt)
+    simvsdata(pkt)
+    # datavsmodel(pkt)
 
     exit(0)
 
