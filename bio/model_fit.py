@@ -19,6 +19,10 @@ from bio.utility import histogram_calc, convert_colonys_to_ktlist
 import pickle
 from datetime import datetime
 
+import matplotlib
+matplotlib.rcParams['text.usetex'] = True
+
+
 p=0.5
 D = { (0,0) : 0 , (1,0) : p , (1,1) : 1-p }
 
@@ -89,11 +93,6 @@ def plot_propb(propb, single = False, k=2, scat =False):
     else:
         plt.plot( np.arange(propb.shape[-1]),  propb[k] , c=next(gColors) )
 
-
-    # plt.xlabel(r"time ticks")
-    # plt.ylabel(r"$ \sum{ \frac{\psi_i}{\psi_0 } } \ge k  $")
-
-
 def picklize():
     prob = get_multi_factor( 200, 0, 100 )
     with open(f"colonys-prob_test-{datetime.now()}.pkl", 'wb') as handle:
@@ -108,32 +107,31 @@ def mean_func_of_time(propb):
     return At
 
 def plot_mean_func_of_time(propb):
-    propb = propb.T
-    At = np.zeros( propb.shape[-1] )
-    for j, vec in enumerate( propb ):
-        At += vec * j 
-    plt.scatter(  np.arange( len(At[2:] )) , At[2:] )
-    plt.show()
-
-
+    # propb = propb.T
+    At = mean_func_of_time(propb)
+    # plt.scatter(  np.arange( len(At[2:] )) , At[2:] )
+    plt.plot( At )
 
 def test( gen_methods ):
     def _test( ):
+        ret = [ ]
         firat_color = next(gColors)
         for _method in gen_methods:
             prob = _method()
+            ret.append( deepcopy ( prob ) )
             plot_propb( prob )
             current_color = next(gColors)
             while current_color != firat_color :
                 current_color = next(gColors)
-
+        return ret
     return _test
 
 def load_data_pkl_filter( ):
-    colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
+    # colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb")) #[:120]
+    colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_16-55-07.727509.pkl", "rb"))
     good_colonies, _ = filter_colonies(colonies)
     pkt =  histogram_calc(  convert_colonys_to_ktlist(good_colonies), 1, 100, 80)
-    return pkt[:,40:]
+    return pkt[:50,40:]
 
 # fit the model, and returns pkt.
 def lam_fit_pkt(prob ):
@@ -144,11 +142,10 @@ def lam_fit_pkt(prob ):
 
 simvsdata = test( [
       lambda : normalize_propb
-                    (sim( 60, 100 ))[:80*1],
+                    (sim( 50, 100 ))[:80*1],
       lambda : normalize_propb
                     (load_data_pkl_filter())[:80*1] 
     ])
-
 datavsmodel = test( [
       lambda : lam_fit_pkt
                 (normalize_propb
@@ -156,53 +153,13 @@ datavsmodel = test( [
       lambda : normalize_propb
                 (load_data_pkl_filter())[:80*1] 
     ])
-
 simvsmodel =  test( [
       lambda : normalize_propb
-                    (sim( 60, 100 ))[:80*1],
+                    (sim( 50, 100 ))[:80*1],
       lambda : lam_fit_pkt
                 (normalize_propb
-                    (sim( 60, 100 ))[:80*1]) (),
+                    (sim( 50, 100 ))[:80*1]) (),
     ])
- 
-
-# def simvsmodel( ):
-#     simpkt = sim( 60, 100 )[:60]
-#     plot_propb (  normalize_propb(deepcopy(simpkt)) ) 
-#     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( simpkt)))
-#     plot_propb( values.reshape( simpkt.shape ) )
-#     plt.show()
-
-# def simvsdata( prob ):
-
-
-#     simpkt = normalize_propb(sim( 60, 100 ))[:80*1]
-    
-#     print(simpkt.shape)
-        
-#     r = next(gColors)
-#     plot_propb (  simpkt  )
-#     t = next(gColors)
-#     while t != r :
-#         t = next(gColors)
-
-#     plot_propb ( normalize_propb(prob[:80*1]) )
-#     plt.show()
-
-# def datavsmodel( prob ):
-#     prob = normalize_propb(prob[:80*1])[:,40:] 
-#     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))    
-    
-#     r = next(gColors)
-#     plot_propb( prob )
-
-#     t = next(gColors)
-#     while t != r :
-#         t = next(gColors)
-    
-#     plot_propb( values.reshape( prob.shape ) )
-    
-#     plt.show()
 
 def colony_k(colonies, i, plot=False):
     colony = colonies[i]
@@ -219,124 +176,41 @@ def colony_k(colonies, i, plot=False):
 from bio.mc2 import filter_colonies
 
 
+def plot_model_p( p, emptyshape=(200,500) ):
+    pkt = estimate_distribute(emptyshape)( np.zeros((1,1)) , p , 1, 1).reshape(emptyshape)
+    plot_mean_func_of_time(pkt[:, :40])
+
+def battle( _method, genplot_pks = lambda : 1, genplot_mean = lambda : 1 , name=str(random()) ):
+    pkts = _method()    
+    genplot_pks()
+    
+    plt.savefig(f"./svg/pkt-{name}.svg")    
+    plt.clf()
+    for pkt in pkts :
+        plot_mean_func_of_time( pkt )
+    genplot_mean()
+    plt.savefig(f"./svg/average-{name}.svg")
+    plt.clf()
 if __name__ == "__main__":
 
-
-
-    # colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
-    # good_colonies, _ = filter_colonies(colonies)
-    # pkt = histogram_calc(  convert_colonys_to_ktlist(good_colonies), 1, 100, 80)
-    simvsdata()
-    plt.show()
-    datavsmodel()
-    plt.show()
-    # datavsmodel(pkt)
-
-    exit(0)
-
-    # picklize()
-    colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
-    for i in range(10):
-        colony_k(colonies, i, True)
-    plt.show()
-    exit(0)
-
-    # colonies = pickle.load( open("./pkl/colonys-prob_test-2021-06-19_19-17-09.429712.pkl", "rb"))[:120]
-    # pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 10, 100, 60)
-    # simvsdata(pkt)
     # exit(0)
+    def plot_axes():
+        plt.xlabel(r"time ticks")
+        plt.ylabel(r"$ \sum{ \frac{\psi_i}{\psi_0 } } = k  $")
 
-    # pkt = get_multi_factor_pckl( 50 , col_idx=4)
-
-    # simvsmodel( )
-    # simvsdata("prob_test-2021-06-12 16:41:23.299589.pkl")
-    # datavsmodel("prob_test-2021-06-12 16:41:23.299589.pkl" )
-    # plot_mean_func_of_time()
-    #     plot_propb ( deepcopy( prob ) )
-# 
-
-    # prob = pickle.load( open( "prob_test-2021-06-07 20:34:17.759904.pkl" , "rb"))
-    # prob = pickle.load( open("prob_test-2021-06-12 15:35:52.515836.pkl", "rb"))
-    # prob = pickle.load( open("prob_test-2021-06-12 14:19:33.846149.pkl", "rb"))
+    def plot_title( _title ):
+        def lam():
+            plt.title(_title)
+            plot_axes()
+        return lam
+    battle( simvsdata, genplot_pks=plot_title(r"sim vs data") , genplot_mean=plot_title(r"average, sim vs data"), name="sim-vs-data")
+    battle( simvsmodel,  genplot_pks=plot_title(r"sim vs model"),  genplot_mean=plot_title(r"average, sim vs model"), name="sim-vs-model")
+    battle( datavsmodel, genplot_pks=plot_title(r"data vs model"),  genplot_mean=plot_title(r"average, data vs model"), name="data-vs-model") 
     
-
-
-    prob = pickle.load( open("./pkl/prob_test-2021-06-12 16:05:21.825747.pkl".replace(":", "-").replace(" ", "_"), "rb"))
-    # prob = pickle.load( open("prob_test-2021-06-12 16:41:23.299589.pkl", "rb"))
-    # prob = prob[20:,15:40]
-
-    plot_mean_func_of_time(normalize_propb(deepcopy( prob.T )))
-
-    exit(0)
-    # simprob = sim( 20, 100, p = 0.125, number_of_exp=5000  )
-    # # plot_propb ( deepcopy( prob )) 
-
-    # plot_propb (  simprob , single=True, k=3 )
-
-    plot_propb (  normalize_propb(deepcopy(simprob)) , single=True, k=2 )
-    plot_propb (  normalize_propb(deepcopy(prob)) , single=True, k=2 )
-
-    # plot_propb ( normalize_propb(deepcopy( prob ) ))
+    plot_model_p(0.108)
+    plot_title( r"model for $ p = 0.108 $ ")()
     plt.show()
-
-    # exit(0)
-
-    # plt.show()
-    # def fitted_for_p(p):
-    
-    #     print(prob.shape)
-    #     return popt[0]
-    #     # return [popt, MSR] 
-    # popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob[0:180])))
-    # plot_propb( values.reshape( prob[0:180].shape ) )
-    # plt.show()
-    plot_mean_func_of_time(normalize_propb(deepcopy( prob[:100].T )))
     exit(0)
-    _prob = normalize_propb(prob[:10])
-    simprob =  sim(40, 500, p=0.44, number_of_exp=50000)
-    # plot_propb ( deepcopy( values.reshape(  prob.shape) ) )
 
 
-    # _dict = deepcopy( initiallstate )
-    # prob_r = np.zeros(  shape=(40,60) )
-    # for k in range(40):
-    #     for t in range(60):
-    #         prob_r[k][t] = f( k,t, p = 0.4, _dict=_dict)
-    # normalize_propb(prob_r)
-    # plot_propb( _prob )
-    plot_propb( normalize_propb(simprob) )
-    plt.show()
-    # p_axis = np.linspace( 0.3, 1, 10 )
-    # res_p_axis = np.vectorize(fitted_for_p ) (p_axis )
-    # plt.plot(p_axis, res_p_axis)
-    # plt.show()
-        
-    # plt.savefig("./svg/fig5kt-fitted.svg")
-    # plt.clf()
-    # plt.savefig("./svg/fig4kt-sim.svg")
-    # plt.clf()
-    # points =list( map( np.max , _prob ))
 
-    # def find_i(j, points):
-    #     eps = 0.1
-    #     for _i ,_j in enumerate( points):
-    #         if abs(i - _j) < eps :
-    #             return _i, _j
-
-    # for i in range(2, 7):
-    #     ( _time1, _pop1 ) , ( _time2, _pop2 )  = find_i(i), find_i(i*2)
-        
-    #     plt.plot(  [_time1, _time2 , ])
-        
-
-        
-    #     for _j in points:
-    #         if abs(i - _j) < eps :
-                # print(_j)    
-        # j = points.find( i)
-        # print(j)
-        # points[2*i]
-
-    # plot_propb( _prob )
-    # # plt.plot(  np.arange( len(points)) * points )
-    # plt.show()
