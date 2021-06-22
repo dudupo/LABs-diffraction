@@ -115,43 +115,94 @@ def plot_mean_func_of_time(propb):
     plt.scatter(  np.arange( len(At[2:] )) , At[2:] )
     plt.show()
 
-def simvsmodel( ):
-    simpkt = sim( 60, 100 )[:60]
-    plot_propb (  normalize_propb(deepcopy(simpkt)) ) 
-    popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( simpkt)))
-    plot_propb( values.reshape( simpkt.shape ) )
-    plt.show()
-
-def simvsdata( prob ):
 
 
-    simpkt = normalize_propb(sim( 60, 100 ))[:80*1]
+def test( gen_methods ):
+    def _test( ):
+        firat_color = next(gColors)
+        for _method in gen_methods:
+            prob = _method()
+            plot_propb( prob )
+            current_color = next(gColors)
+            while current_color != firat_color :
+                current_color = next(gColors)
+
+    return _test
+
+def load_data_pkl_filter( ):
+    colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
+    good_colonies, _ = filter_colonies(colonies)
+    pkt =  histogram_calc(  convert_colonys_to_ktlist(good_colonies), 1, 100, 80)
+    return pkt[:,40:]
+
+# fit the model, and returns pkt.
+def lam_fit_pkt(prob ):
+    def _lam_fit_pkt( ):
+        popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))    
+        return values.reshape( prob.shape )
+    return _lam_fit_pkt
+
+simvsdata = test( [
+      lambda : normalize_propb
+                    (sim( 60, 100 ))[:80*1],
+      lambda : normalize_propb
+                    (load_data_pkl_filter())[:80*1] 
+    ])
+
+datavsmodel = test( [
+      lambda : lam_fit_pkt
+                (normalize_propb
+                    (load_data_pkl_filter())[:80*1]) (),
+      lambda : normalize_propb
+                (load_data_pkl_filter())[:80*1] 
+    ])
+
+simvsmodel =  test( [
+      lambda : normalize_propb
+                    (sim( 60, 100 ))[:80*1],
+      lambda : lam_fit_pkt
+                (normalize_propb
+                    (sim( 60, 100 ))[:80*1]) (),
+    ])
+ 
+
+# def simvsmodel( ):
+#     simpkt = sim( 60, 100 )[:60]
+#     plot_propb (  normalize_propb(deepcopy(simpkt)) ) 
+#     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( simpkt)))
+#     plot_propb( values.reshape( simpkt.shape ) )
+#     plt.show()
+
+# def simvsdata( prob ):
+
+
+#     simpkt = normalize_propb(sim( 60, 100 ))[:80*1]
     
-    print(simpkt.shape)
+#     print(simpkt.shape)
         
-    r = next(gColors)
-    plot_propb (  simpkt  )
-    t = next(gColors)
-    while t != r :
-        t = next(gColors)
+#     r = next(gColors)
+#     plot_propb (  simpkt  )
+#     t = next(gColors)
+#     while t != r :
+#         t = next(gColors)
 
-    plot_propb ( normalize_propb(prob[:80*1]) )
-    plt.show()
+#     plot_propb ( normalize_propb(prob[:80*1]) )
+#     plt.show()
 
-def datavsmodel( prob ):
-    prob = normalize_propb(prob[:80*1])[:,40:] 
-    popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))    
+# def datavsmodel( prob ):
+#     prob = normalize_propb(prob[:80*1])[:,40:] 
+#     popt, (pcov, (_range, values)), MSR = model_fit( normalize_propb(deepcopy( prob)))    
     
-    r = next(gColors)
-    plot_propb( prob )
+#     r = next(gColors)
+#     plot_propb( prob )
 
-    t = next(gColors)
-    while t != r :
-        t = next(gColors)
+#     t = next(gColors)
+#     while t != r :
+#         t = next(gColors)
     
-    plot_propb( values.reshape( prob.shape ) )
+#     plot_propb( values.reshape( prob.shape ) )
     
-    plt.show()
+#     plt.show()
 
 def colony_k(colonies, i, plot=False):
     colony = colonies[i]
@@ -165,54 +216,20 @@ def colony_k(colonies, i, plot=False):
         # plt.show()
     return k_arr
 
-
+from bio.mc2 import filter_colonies
 
 
 if __name__ == "__main__":
 
 
-    exit()
-    
-    def get_multi_factor_pckl(t, col_idx=1):
-        k = 1
-        colonies = pickle.load( open("colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))
-        pkt = np.zeros((k, t))
-        col_to_plot = []
-        col_0 = 0
-        for i, colony in enumerate(colonies):
-            colony_zero = colony[0].pix_num
-            start_idx = 0
-            found = False
-            for j, col_t in enumerate(colony):
-                if col_t.pix_num // colony[0].pix_num < 2:
-                    continue
-                elif not found:
-                    colony_zero = col_t.pix_num
-                    found = True
-                    start_idx = j
-                if j < t and found:
-                    if i == col_idx:
-                        col_to_plot.append(col_t.pix_num/ colony[0].pix_num)
-                    cur_k = int(col_t.pix_num // colony_zero)
-                    if cur_k <= k:
-                        pkt[cur_k - 1][j - start_idx] += 1
-                    else:
-                        pkt = np.r_[pkt, np.zeros((cur_k - k, t))]
-                        k = cur_k
-                        pkt[cur_k - 1][j - start_idx] += 1
 
-        if len(col_to_plot) > 0:
-            plt.plot(col_to_plot)
-            plt.plot(exp(40 , 0.125))
-            plt.show()
-        else:
-            print("single colony plot failed, try different colony")
-        return pkt
-
-
-    colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
-    pkt = histogram_calc(  convert_colonys_to_ktlist(colonies), 1, 100, 80)
-    simvsdata(pkt)
+    # colonies = pickle.load( open("pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb"))[:120]
+    # good_colonies, _ = filter_colonies(colonies)
+    # pkt = histogram_calc(  convert_colonys_to_ktlist(good_colonies), 1, 100, 80)
+    simvsdata()
+    plt.show()
+    datavsmodel()
+    plt.show()
     # datavsmodel(pkt)
 
     exit(0)

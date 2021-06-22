@@ -4,7 +4,8 @@ from imageio import imread, imsave
 from os import walk, system
 from random import randint
 import matplotlib.pyplot as plt
-import pickle5 as pickle
+# import pickle5 as pickle
+import pickle
 from numpy.lib.type_check import imag
 from scipy.stats import describe
 from skimage.color import rgb2gray
@@ -131,9 +132,9 @@ def avg_growth(colonies):
         sum = sum + npcol
     return sum / l
 
-def filter_colonies():
-    with open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb") as fh:
-        colonies = pickle.load(fh)
+def filter_colonies(colonies):
+    # with open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb") as fh:
+    #     colonies = pickle.load(fh)
     good_colonies_k = []
     good_colonies = []
     for i in range(len(colonies)):
