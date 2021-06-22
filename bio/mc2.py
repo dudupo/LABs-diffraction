@@ -39,7 +39,7 @@ def colony_k(colonies, i, plot=False):
         k = int((col_t.pix_num/col0) + 0.5)
         if j != 0:
             mult = k / k_arr[j-1]
-            if mult != 2:
+            if mult < 1 or mult > 2:
                 bad = True
                 break
         else:
@@ -137,7 +137,7 @@ def filter_colonies():
     good_colonies_k = []
     good_colonies = []
     for i in range(len(colonies)):
-        col, bad = colony_k(colonies, i, True)
+        col, bad = colony_k(colonies, i, False)
         if not bad:
             good_colonies_k.append(col)
             good_colonies.append(colonies[i])
@@ -152,8 +152,10 @@ if __name__ == '__main__':
     # plt.plot(avg_growth(good_colonies_k))
     # plt.show()
     #
-    # pkt = get_multi_factor(good_colonies)
-    # print(calc_avg_t0_size(good_colonies))
-    # from model_fit import *
-    # simvsdata(pkt)
+    good_colonies, _ = filter_colonies()
+    pkt = get_multi_factor(good_colonies)
+    print(calc_avg_t0_size(good_colonies))
+    from model_fit import *
+    print(pkt)
+    simvsdata(pkt)
     exit(0)
