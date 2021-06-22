@@ -169,6 +169,9 @@ def colony_k(colonies, i, plot=False):
 
 
 if __name__ == "__main__":
+
+
+    exit()
     
     def get_multi_factor_pckl(t, col_idx=1):
         k = 1

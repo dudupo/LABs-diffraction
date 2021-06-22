@@ -39,7 +39,7 @@ def colony_k(colonies, i, plot=False):
         k = int((col_t.pix_num/col0) + 0.5)
         if j != 0:
             mult = k / k_arr[j-1]
-            if mult != 2:
+            if mult < 1 or mult > 2:
                 bad = True
                 break
         else:
@@ -123,18 +123,39 @@ def calc_avg_t0_size(colonies):
     return sum/l
 
 
+def avg_growth(colonies):
+    sum = np.zeros_like(colonies[0])
+    l = len(colonies) + 1
+    for col in colonies:
+        npcol = np.array(col)
+        sum = sum + npcol
+    return sum / l
 
-if __name__ == '__main__':
-    with open("colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb") as fh:
+def filter_colonies():
+    with open("./pkl/colonys-prob_test-2021-06-21_14-27-21.872035.pkl", "rb") as fh:
         colonies = pickle.load(fh)
     good_colonies_k = []
     good_colonies = []
     for i in range(len(colonies)):
-        col, bad = colony_k(colonies, i, True)
+        col, bad = colony_k(colonies, i, False)
         if not bad:
             good_colonies_k.append(col)
             good_colonies.append(colonies[i])
+    return good_colonies, good_colonies_k
 
-    plt.show()
-    # print(calc_avg_t0_size(good_colonies))
+
+if __name__ == '__main__':
+
+
+    # plt.show()
+    #
+    # plt.plot(avg_growth(good_colonies_k))
+    # plt.show()
+    #
+    good_colonies, _ = filter_colonies()
+    pkt = get_multi_factor(good_colonies)
+    print(calc_avg_t0_size(good_colonies))
+    from model_fit import *
+    print(pkt)
+    simvsdata(pkt)
     exit(0)
