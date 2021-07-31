@@ -1,0 +1,7 @@
+
+function [x, Y, mu, sig, w0] = create_signal(mu, sig, mu2, sig2,  w1)
+    r = 2*pi / 1000;
+    x = -pi:r:pi; 
+    Y =  0.5*(1 + gaussmf(x,[sig, mu]).*cos(w0*x));
+    Y = Y.';
+end

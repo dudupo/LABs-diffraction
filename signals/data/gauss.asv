@@ -1,0 +1,20 @@
+
+
+w0 = 1;
+w1 = 1000;
+
+[x0, Y0, mu, sig, w0 , mu2, sig2, w2]  = create_signal(0, 1, w0, 0, 1, w1);
+for i = 2:30:00
+    [x, Y, mu, sig, w0 , mu2, sig2, w2]  = create_signal(0, 1, i * w0, 0, 1, i*w1);
+    Y0 = Y0 + Y;
+end 
+
+fs = 100000;
+%plot(x0,Y0);
+
+X = fft(Y0);
+X = fftshift(abs(X));
+n = length(X);
+fshift = (-n/2:n/2-1)*(fs/n); % zero-centered frequency range
+%powershift = abs(X).^2/n;     % zero-centered power
+plot(fshift,X);

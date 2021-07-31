@@ -7,9 +7,9 @@ from bio.mc import ColonyRect
 from bio.utility import histogram_calc
 
 def exp(k, p, initx=1):
-	#initx = initx * int((random()+1) * 1.8)
+	initx = initx * int((random()+1) * 1.8)
 	x =  initx
-	L = [x]
+	L = [  ]
 	while x < initx*k:
 		for _ in range(x):
 			x = x+1 if random() < p else x 
